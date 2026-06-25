@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>Kindergarten Ready Adventure</title>
+<title>Kindergartener Learning + Bedtime Stories</title>
 <style>
 :root{
-  --pink:#ff5fa2;--red:#ff6b6b;--orange:#ff922b;--yellow:#ffd43b;--green:#51cf66;
-  --teal:#20c997;--blue:#4dabf7;--purple:#9775fa;--dark:#263238;--white:#fff;
+  --pink:#ff5fa2;--orange:#ff922b;--yellow:#ffd43b;--green:#51cf66;--teal:#20c997;--blue:#4dabf7;--purple:#9775fa;--dark:#263238;
   --shadow:0 8px 0 rgba(0,0,0,.15),0 16px 28px rgba(0,0,0,.12);
 }
 *{box-sizing:border-box}
@@ -17,43 +16,49 @@ body{
              radial-gradient(circle at 90% 16%,#d0ebff 0 10%,transparent 11%),
              linear-gradient(135deg,#fff0f6,#e7f5ff,#ebfbee);overflow-x:hidden;
 }
+body.bedtime{background:linear-gradient(135deg,#1b1b3a,#312450,#0b7285);color:#fff}
 header{
   text-align:center;color:#fff;padding:16px 10px 12px;position:sticky;top:0;z-index:5;
   background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--blue),var(--purple));
   border-bottom:7px solid white;box-shadow:0 6px 22px rgba(0,0,0,.16)
 }
-h1{margin:0;font-size:clamp(28px,7vw,58px);text-shadow:2px 4px 0 rgba(0,0,0,.18)}
+body.bedtime header{background:linear-gradient(90deg,#312450,#364fc7,#0b7285)}
+h1{margin:0;font-size:clamp(27px,7vw,56px);text-shadow:2px 4px 0 rgba(0,0,0,.18)}
 .sub{font-weight:900;font-size:clamp(15px,3vw,22px)}
-button{
+button,select{
   border:0;border-radius:22px;padding:12px 14px;font-family:inherit;font-weight:900;font-size:16px;cursor:pointer;
   box-shadow:0 5px 0 rgba(0,0,0,.18);transition:.08s
 }
+select{background:white;color:#263238;max-width:280px}
 button:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 .top{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:10px}
-.white{background:white;color:#d6336c}.dark{background:#263238;color:white}.gold{background:#ffd43b;color:#5c3d00}
+.white{background:white;color:#d6336c}.dark{background:#263238;color:white}.gold{background:#ffd43b;color:#5c3d00}.bluebtn{background:#d0ebff;color:#1864ab}
 .wrap{width:min(1240px,95vw);margin:18px auto 45px}
-.hero,.section{background:rgba(255,255,255,.93);border:5px solid white;border-radius:34px;box-shadow:var(--shadow);padding:18px}
+.hero,.section{background:rgba(255,255,255,.94);border:5px solid white;border-radius:34px;box-shadow:var(--shadow);padding:18px;color:var(--dark)}
+body.bedtime .hero,body.bedtime .section{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4);color:#fff}
 .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:center}
-.hero h2{margin:0 0 8px;font-size:clamp(28px,5vw,48px);color:#d6336c}.hero p{margin:0;font-size:clamp(18px,3vw,24px);font-weight:900;line-height:1.35}
+.hero h2{margin:0 0 8px;font-size:clamp(28px,5vw,48px);color:#d6336c}
+body.bedtime .hero h2,body.bedtime h2{color:#ffd43b}
+.hero p{margin:0;font-size:clamp(18px,3vw,24px);font-weight:900;line-height:1.35}
 .mascot{font-size:clamp(95px,18vw,170px);text-align:center;animation:bounce 1.5s infinite ease-in-out}
 @keyframes bounce{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
-.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin:18px 0}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(124px,1fr));gap:10px;margin:18px 0}
 .tab{min-height:64px;color:white;border:4px solid white}
 .tab:nth-child(1){background:var(--pink)}.tab:nth-child(2){background:var(--orange)}.tab:nth-child(3){background:var(--yellow);color:#5c3d00}
 .tab:nth-child(4){background:var(--green)}.tab:nth-child(5){background:var(--blue)}.tab:nth-child(6){background:var(--purple)}
 .tab:nth-child(7){background:var(--teal)}.tab:nth-child(8){background:#f06595}.tab:nth-child(9){background:#748ffc}
-.tab:nth-child(10){background:#12b886}.tab:nth-child(11){background:#ff8787}.tab:nth-child(12){background:#845ef7}
+.tab:nth-child(10){background:#12b886}.tab:nth-child(11){background:#364fc7}.tab:nth-child(12){background:#1b1b3a}
 .section{display:none;margin-bottom:18px}.section.active{display:block}
 h2{font-size:clamp(28px,5vw,45px);margin:0 0 12px;color:#d6336c}
-.hint{font-size:18px;font-weight:900;background:#fff3bf;border:3px dashed #ffd43b;border-radius:20px;padding:12px;margin-bottom:15px}
+.hint{font-size:18px;font-weight:900;background:#fff3bf;border:3px dashed #ffd43b;border-radius:20px;padding:12px;margin-bottom:15px;color:#263238}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:13px}
 .card{
   background:white;border:4px solid #e9ecef;border-radius:24px;min-height:118px;padding:10px;text-align:center;font-size:21px;font-weight:900;
-  box-shadow:0 7px 0 #dee2e6;display:flex;flex-direction:column;justify-content:center;gap:6px;user-select:none
+  box-shadow:0 7px 0 #dee2e6;display:flex;flex-direction:column;justify-content:center;gap:6px;user-select:none;color:#263238
 }
 .card:hover{transform:translateY(-2px) scale(1.02);border-color:#ffd43b}
 .big{font-size:52px;line-height:1}.emoji{font-size:48px}.word{font-size:17px;line-height:1.2}
-.quiz{margin-top:18px;background:#e7f5ff;border:4px solid #74c0fc;border-radius:28px;padding:16px}
+.quiz{margin-top:18px;background:#e7f5ff;border:4px solid #74c0fc;border-radius:28px;padding:16px;color:#263238}
 .question{font-size:clamp(24px,4vw,38px);font-weight:900;margin-bottom:12px}
 .options{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:11px}
 .options button{background:white;border:4px solid #74c0fc;color:#263238;min-height:68px;font-size:22px}
@@ -68,8 +73,11 @@ h2{font-size:clamp(28px,5vw,45px);margin:0 0 12px;color:#d6336c}
 .letterbox{background:#fff0f6;border:4px dashed #f783ac;border-radius:30px;text-align:center;padding:18px;font-size:clamp(95px,22vw,210px);font-weight:900;color:#d6336c;line-height:1}
 canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-radius:28px;touch-action:none;display:block}
 .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
-.skillbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:12px}
-.skill{background:white;border:3px solid #dee2e6;border-radius:18px;padding:10px;font-weight:900}
+.story{
+  background:rgba(255,255,255,.95);border:4px solid #ffd43b;border-radius:28px;padding:18px;margin-top:15px;color:#263238;
+  font-size:clamp(19px,3vw,25px);line-height:1.45;font-weight:800
+}
+.story-title{font-size:clamp(28px,5vw,44px);font-weight:900;color:#5f3dc4;margin-bottom:8px}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}.confetti span{position:absolute;font-size:28px;animation:fall 1.4s linear forwards}
 @keyframes fall{from{transform:translateY(-40px) rotate(0deg);opacity:1}to{transform:translateY(110vh) rotate(360deg);opacity:0}}
 @media(max-width:760px){.hero,.tracearea{grid-template-columns:1fr;text-align:center}.grid{grid-template-columns:repeat(auto-fit,minmax(98px,1fr))}.card{min-height:106px}.tabs{grid-template-columns:repeat(2,1fr)}}
@@ -77,23 +85,26 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
 </head>
 <body>
 <header>
-  <h1>🎒 Kindergarten Ready Adventure 🎒</h1>
-  <div class="sub">1-Month School Readiness Practice with Audio</div>
+  <h1>🎒 Kindergartener Learning + Bedtime Stories 🌙</h1>
+  <div class="sub">Ages 5–7 • Reading • Math • Writing • Science • Stories with Audio</div>
   <div class="top">
     <button class="white" onclick="intro()">🔊 Start</button>
-    <button class="gold" onclick="dailyPractice()">📅 Daily Practice</button>
+    <button class="gold" onclick="dailyPractice()">📅 Daily Plan</button>
+    <button class="bluebtn" onclick="toggleBedtime()">🌙 Bedtime Mode</button>
+    <button class="white" onclick="testVoice()">👧 Test Girl Voice</button>
     <button class="white" onclick="repeatLast()">🔁 Repeat</button>
     <button class="dark" onclick="resetStars()">⭐ Reset</button>
+    <select id="voiceSelect" onchange="saveVoice()"><option>Loading voices...</option></select>
   </div>
 </header>
 
 <main class="wrap">
 <section class="hero">
   <div>
-    <h2>Hello future kindergartener! 🚀</h2>
-    <p>Tap cards to learn. Try quizzes for school skills: letters, sounds, sight words, reading, math, patterns, sorting, calendar, writing, safety, and confidence.</p>
+    <h2>Hello smart kindergartener! 🚀</h2>
+    <p>Practice school skills for ages 5–7. Learn phonics, sight words, reading, math, writing, science, social skills, and enjoy calming bedtime stories.</p>
   </div>
-  <div class="mascot" onclick="speak('Hi! I am Leo. Let us get kindergarten ready. Tap a card and I will say exactly what it is!')">🦁</div>
+  <div class="mascot" onclick="speak('Hi! I am Leo. Let us learn, read, count, write, and end the day with a peaceful bedtime story.')">🦁</div>
 </section>
 
 <div class="tabs">
@@ -101,89 +112,89 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <button class="tab" onclick="show('words')">👀 Sight Words</button>
   <button class="tab" onclick="show('reading')">📖 Reading</button>
   <button class="tab" onclick="show('math')">🔢 Math</button>
-  <button class="tab" onclick="show('patterns')">🧩 Patterns</button>
+  <button class="tab" onclick="show('patterns')">🧩 Logic</button>
   <button class="tab" onclick="show('shapes')">🔺 Shapes</button>
   <button class="tab" onclick="show('calendar')">📅 Calendar</button>
   <button class="tab" onclick="show('science')">🌱 Science</button>
   <button class="tab" onclick="show('social')">😊 Social</button>
   <button class="tab" onclick="show('safety')">🛡️ Safety</button>
   <button class="tab" onclick="show('trace')">✏️ Writing</button>
-  <button class="tab" onclick="show('checklist')">✅ Checklist</button>
+  <button class="tab" onclick="show('stories')">🌙 Stories</button>
 </div>
 
 <div class="progress" id="stars"></div>
 
 <section id="phonics" class="section active">
-  <h2>Letters, Sounds, Beginning Sounds</h2>
-  <div class="hint">Kindergarten goal: know uppercase/lowercase letters and hear beginning sounds.</div>
+  <h2>Phonics and Beginning Sounds</h2>
+  <div class="hint">Goal for ages 5–7: know letters, sounds, blends, and beginning sounds.</div>
   <div class="grid" id="letterGrid"></div>
   <div class="quiz"><div class="question" id="phonicsQ"></div><div class="options" id="phonicsOptions"></div><div class="feedback" id="phonicsFb"></div></div>
 </section>
 
 <section id="words" class="section">
   <h2>Sight Words</h2>
-  <div class="hint">Tap each word. These are common kindergarten words children start recognizing quickly.</div>
+  <div class="hint">Read common words quickly. Tap each word to hear it.</div>
   <div class="grid" id="wordGrid"></div>
   <div class="quiz"><div class="question" id="wordQ"></div><div class="options" id="wordOptions"></div><div class="feedback" id="wordFb"></div></div>
 </section>
 
 <section id="reading" class="section">
-  <h2>CVC Words and Simple Sentences</h2>
-  <div class="hint">Practice sounding out short words like cat, dog, sun, and reading tiny sentences.</div>
+  <h2>CVC Words, Blends, and Sentences</h2>
+  <div class="hint">Sound out short words, blends, and read simple sentences.</div>
   <div class="grid" id="cvcGrid"></div>
   <div class="quiz"><div class="question" id="readQ"></div><div class="options" id="readOptions"></div><div class="feedback" id="readFb"></div></div>
 </section>
 
 <section id="math" class="section">
-  <h2>Counting, Number Sense, Addition, Subtraction</h2>
-  <div class="hint">Kindergarten goal: count to 100, recognize numbers, compare more/less, add and subtract small numbers.</div>
+  <h2>Math: Counting, Add, Subtract, Compare</h2>
+  <div class="hint">Practice counting to 100, skip counting, addition, subtraction, more/less, and number bonds.</div>
   <div class="grid" id="numberGrid"></div>
   <div class="quiz"><div class="question" id="mathQ"></div><div class="options" id="mathOptions"></div><div class="feedback" id="mathFb"></div></div>
 </section>
 
 <section id="patterns" class="section">
-  <h2>Patterns, Sorting, More/Less</h2>
-  <div class="hint">Tap the cards and try the quiz. This builds early math thinking.</div>
+  <h2>Patterns, Sorting, Logic</h2>
+  <div class="hint">Build thinking skills: patterns, same/different, more/less, and sequencing.</div>
   <div class="grid" id="patternGrid"></div>
   <div class="quiz"><div class="question" id="patternQ"></div><div class="options" id="patternOptions"></div><div class="feedback" id="patternFb"></div></div>
 </section>
 
 <section id="shapes" class="section">
-  <h2>Shapes and Colors</h2>
-  <div class="hint">Tap shapes and colors. Look for them around the house.</div>
+  <h2>Shapes, Colors, 2D and 3D</h2>
+  <div class="hint">Learn shapes, colors, and real-world objects.</div>
   <div class="grid" id="shapeGrid"></div>
   <div class="grid" id="colorGrid" style="margin-top:14px"></div>
 </section>
 
 <section id="calendar" class="section">
-  <h2>Days, Months, Weather</h2>
-  <div class="hint">School routine skill: answer “What day is it?” and “How is the weather?”</div>
+  <h2>Calendar, Time, Weather</h2>
+  <div class="hint">Practice days, months, seasons, weather, yesterday/today/tomorrow.</div>
   <h2>Days</h2><div class="grid" id="daysGrid"></div>
   <h2>Months</h2><div class="grid" id="monthsGrid"></div>
-  <h2>Weather</h2><div class="grid" id="weatherGrid"></div>
+  <h2>Weather + Seasons</h2><div class="grid" id="weatherGrid"></div>
 </section>
 
 <section id="science" class="section">
   <h2>Science and World Around Me</h2>
-  <div class="hint">Tap to learn animals, plants, seasons, and five senses.</div>
+  <div class="hint">Plants, animals, senses, seasons, planet Earth, and healthy body basics.</div>
   <div class="grid" id="scienceGrid"></div>
 </section>
 
 <section id="social" class="section">
-  <h2>Feelings, Manners, Classroom Skills</h2>
-  <div class="hint">Very important for kindergarten: listening, sharing, waiting, asking for help, and naming feelings.</div>
+  <h2>Social Skills and Feelings</h2>
+  <div class="hint">Kindergarten success: listen, share, wait, ask for help, try again, and name feelings.</div>
   <div class="grid" id="socialGrid"></div>
 </section>
 
 <section id="safety" class="section">
   <h2>Safety Skills</h2>
-  <div class="hint">Practice these with a parent. Tap each card and repeat the rule.</div>
+  <div class="hint">Practice these with a parent. Tap and repeat the rule.</div>
   <div class="grid" id="safetyGrid"></div>
 </section>
 
 <section id="trace" class="section">
   <h2>Writing Practice</h2>
-  <div class="hint">Practice name, letters, numbers, and pre-writing lines. Use finger or mouse.</div>
+  <div class="hint">Practice letters, numbers, shapes, pre-writing lines, and spelling simple words.</div>
   <div class="tracearea">
     <div>
       <div class="letterbox" id="traceBox">A</div>
@@ -197,55 +208,109 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
       <canvas id="canvas" width="720" height="420"></canvas>
       <div class="row">
         <button class="gold" onclick="clearCanvas()">🧽 Clear</button>
-        <button class="white" onclick="star('Great writing practice! Your hand is getting ready for kindergarten!')">⭐ I Did It</button>
+        <button class="white" onclick="star('Great writing! Your hand is getting stronger for school!')">⭐ I Did It</button>
       </div>
     </div>
   </div>
 </section>
 
-<section id="checklist" class="section">
-  <h2>1-Month Kindergarten Readiness Checklist</h2>
-  <div class="hint">Do 15–20 minutes daily. Tap each skill to hear what to practice.</div>
-  <div class="skillbar" id="checkGrid"></div>
+<section id="stories" class="section">
+  <h2>Bedtime Stories for Ages 5–7</h2>
+  <div class="hint">Choose a story. Tap “Read Story” for calm read-aloud audio. Use the voice dropdown above to pick the most natural girl voice available on your device.</div>
+  <div class="grid" id="storyGrid"></div>
+  <div class="story" id="storyBox">
+    <div class="story-title">Pick a bedtime story 🌙</div>
+    <div id="storyText">Choose a story card above, then tap Read Story.</div>
+    <div class="row">
+      <button class="gold" onclick="readCurrentStory()">🔊 Read Story</button>
+      <button class="bluebtn" onclick="readMoral()">💛 Moral</button>
+      <button class="white" onclick="calmBreathing()">😴 Calm Breathing</button>
+      <button class="dark" onclick="stopVoice()">⏹️ Stop</button>
+    </div>
+  </div>
 </section>
 </main>
 
 <div class="confetti" id="confetti"></div>
 
 <script>
-let stars=Number(localStorage.getItem("kStars")||0),lastSpeech="",traceIndex=0;
+let stars=Number(localStorage.getItem("kStars2")||0),lastSpeech="",traceIndex=0,currentStory=null,voices=[],selectedVoice=null;
 const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-const letterData={
-A:["Apple","ah","🍎"],B:["Ball","buh","⚽"],C:["Cat","kuh","🐱"],D:["Dog","duh","🐶"],E:["Elephant","eh","🐘"],F:["Fish","fff","🐟"],G:["Goat","guh","🐐"],H:["Hat","huh","🎩"],I:["Igloo","ih","🧊"],J:["Juice","juh","🧃"],K:["Kite","kuh","🪁"],L:["Lion","lll","🦁"],M:["Moon","mmm","🌙"],N:["Nest","nnn","🪺"],O:["Octopus","oh","🐙"],P:["Pizza","puh","🍕"],Q:["Queen","kwuh","👑"],R:["Rainbow","rrr","🌈"],S:["Sun","sss","☀️"],T:["Tiger","tuh","🐯"],U:["Umbrella","uh","☂️"],V:["Van","vvv","🚐"],W:["Water","wuh","💧"],X:["Fox has x sound","ks","🦊"],Y:["Yo-yo","yuh","🪀"],Z:["Zebra","zzz","🦓"]
-};
-const sight=["I","a","the","to","and","is","it","in","you","we","my","me","he","she","see","like","can","go","up","down","look","at","on","red","blue","yellow","big","little","play","come"];
-const cvc=[["cat","🐱"],["dog","🐶"],["sun","☀️"],["hat","🎩"],["pig","🐷"],["bug","🐞"],["cup","☕"],["bed","🛏️"],["hen","🐔"],["fox","🦊"],["jam","🍓"],["map","🗺️"]];
-const sentences=["I see a cat.","I can jump.","We like to play.","The dog is big.","Look at me.","I go up.","My hat is red.","She can run."];
-const shapes=[["Circle","circle","A circle is round like a ball."],["Square","square","A square has four equal sides."],["Triangle","triangle","A triangle has three sides."],["Rectangle","rectangle","A rectangle is like a door."],["Oval","oval","An oval is like an egg."],["Diamond","diamond","A diamond looks like a kite."]];
+const letterData={A:["Apple","ah","🍎"],B:["Ball","buh","⚽"],C:["Cat","kuh","🐱"],D:["Dog","duh","🐶"],E:["Elephant","eh","🐘"],F:["Fish","fff","🐟"],G:["Goat","guh","🐐"],H:["Hat","huh","🎩"],I:["Igloo","ih","🧊"],J:["Juice","juh","🧃"],K:["Kite","kuh","🪁"],L:["Lion","lll","🦁"],M:["Moon","mmm","🌙"],N:["Nest","nnn","🪺"],O:["Octopus","oh","🐙"],P:["Pizza","puh","🍕"],Q:["Queen","kwuh","👑"],R:["Rainbow","rrr","🌈"],S:["Sun","sss","☀️"],T:["Tiger","tuh","🐯"],U:["Umbrella","uh","☂️"],V:["Van","vvv","🚐"],W:["Water","wuh","💧"],X:["Fox has x sound","ks","🦊"],Y:["Yo-yo","yuh","🪀"],Z:["Zebra","zzz","🦓"]};
+const sight=["I","a","the","to","and","is","it","in","you","we","my","me","he","she","see","like","can","go","up","down","look","at","on","red","blue","yellow","big","little","play","come","said","for","have","here","was","with","they","this","are","not","but","all","one","two","three"];
+const cvc=[["cat","🐱"],["dog","🐶"],["sun","☀️"],["hat","🎩"],["pig","🐷"],["bug","🐞"],["cup","☕"],["bed","🛏️"],["hen","🐔"],["fox","🦊"],["jam","🍓"],["map","🗺️"],["frog","🐸"],["ship","🚢"],["flag","🚩"],["tree","🌳"],["star","⭐"],["drum","🥁"]];
+const shapes=[["Circle","circle","A circle is round like a ball."],["Square","square","A square has four equal sides."],["Triangle","triangle","A triangle has three sides."],["Rectangle","rectangle","A rectangle is like a door."],["Oval","oval","An oval is like an egg."],["Diamond","diamond","A diamond looks like a kite."],["Cube","square","A cube is like a block."],["Sphere","circle","A sphere is like a ball."]];
 const colors=[["Red","#ff0000"],["Blue","#228be6"],["Yellow","#ffd43b"],["Green","#40c057"],["Orange","#ff922b"],["Purple","#7950f2"],["Pink","#f06595"],["Brown","#8d6e63"],["Black","#222"],["White","#fff"]];
 const days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
-const weather=[["Sunny","☀️"],["Rainy","🌧️"],["Cloudy","☁️"],["Snowy","❄️"],["Windy","🌬️"],["Rainbow","🌈"]];
-const science=[["Plant","🌱","A plant needs sun, water, air, and soil."],["Tree","🌳","Trees give shade and help us breathe."],["Flower","🌸","Flowers can smell sweet and have colors."],["Bug","🐞","Bugs are tiny animals."],["Fish","🐟","Fish live in water."],["Bird","🐦","Birds have feathers and many can fly."],["Eyes","👀","Eyes are for seeing."],["Ears","👂","Ears are for hearing."],["Nose","👃","Nose is for smelling."],["Tongue","👅","Tongue is for tasting."],["Hands","🖐️","Hands are for touching."],["Winter","⛄","Winter can be cold."],["Spring","🌷","Spring brings flowers."],["Summer","🏖️","Summer is warm."],["Fall","🍂","Fall has colorful leaves."]];
-const social=[["Listen","👂","I listen when the teacher is talking."],["Raise Hand","✋","I raise my hand when I want to speak."],["Share","🤝","I can share toys and take turns."],["Wait","⏳","I can wait for my turn."],["Ask Help","🙋","I can say, please help me."],["Clean Up","🧸","I put things back where they belong."],["Happy","😊","I feel happy."],["Sad","😢","I feel sad. I can ask for a hug."],["Angry","😠","I feel angry. I can breathe slowly."],["Brave","🦸","I can try new things."]];
+const weather=[["Sunny","☀️","Sunny means the sun is shining."],["Rainy","🌧️","Rainy means water drops fall."],["Cloudy","☁️","Cloudy means many clouds are in the sky."],["Snowy","❄️","Snowy means snowflakes fall."],["Windy","🌬️","Windy means air is moving fast."],["Rainbow","🌈","A rainbow has many colors."],["Winter","⛄","Winter can be cold."],["Spring","🌷","Spring brings flowers."],["Summer","🏖️","Summer is warm."],["Fall","🍂","Fall has colorful leaves."]];
+const science=[["Plant","🌱","A plant needs sun, water, air, and soil."],["Tree","🌳","Trees give shade and help us breathe."],["Flower","🌸","Flowers can smell sweet and have colors."],["Bug","🐞","Bugs are tiny animals."],["Fish","🐟","Fish live in water."],["Bird","🐦","Birds have feathers and many can fly."],["Earth","🌍","Earth is our planet."],["Moon","🌙","The moon shines at night."],["Eyes","👀","Eyes are for seeing."],["Ears","👂","Ears are for hearing."],["Nose","👃","Nose is for smelling."],["Tongue","👅","Tongue is for tasting."],["Hands","🖐️","Hands are for touching."],["Healthy Food","🥦","Healthy food helps your body grow."]];
+const social=[["Listen","👂","I listen when the teacher is talking."],["Raise Hand","✋","I raise my hand when I want to speak."],["Share","🤝","I can share toys and take turns."],["Wait","⏳","I can wait for my turn."],["Ask Help","🙋","I can say, please help me."],["Try Again","💪","If it is hard, I can try again."],["Kind Words","💛","I use please, thank you, and sorry."],["Happy","😊","I feel happy."],["Sad","😢","I feel sad. I can ask for help."],["Angry","😠","I feel angry. I can breathe slowly."],["Brave","🦸","I can try new things."]];
 const safety=[["Full Name","🪪","Practice saying your first and last name."],["Grown-up Name","👨‍👩‍👧","Practice your parent or guardian name."],["Stay With Adult","🧑‍🧒","I stay with my grown-up in public places."],["Stop at Street","🛑","I stop and look before crossing the street."],["Private Parts","🩱","Private parts are private. Tell a trusted grown-up if you feel unsafe."],["Stranger Safety","🚦","I do not go with someone unless my grown-up says yes."],["Emergency","📞","In an emergency, find a trusted grown-up or call emergency help."]];
-const checks=[
-["Letters","Know most uppercase and lowercase letters."],["Sounds","Know beginning sounds like B for ball."],["Name Writing","Practice writing first name daily."],
-["Counting","Count to 100 by ones and tens."],["Numbers","Recognize numbers 1 to 20."],["Compare","Understand more, less, bigger, smaller."],
-["Shapes","Know circle, square, triangle, rectangle."],["Colors","Know common colors."],["Patterns","Finish AB patterns like red-blue-red-blue."],
-["Sight Words","Read simple words like I, a, the, to, see, my."],["CVC Words","Sound out cat, dog, sun, hat."],["Sentences","Read tiny sentences with help."],
-["Scissors/Pencil","Practice safe scissors and pencil grip."],["Routine","Open lunch box, backpack, jacket, bathroom routine."],["Social","Share, wait, listen, ask for help."]
+const traceItems=[...letters,...Array.from({length:20},(_,i)=>String(i+1)),"cat","dog","sun","the","see","|","—","○","△","□"];
+const stories=[
+{title:"Leo and the Brave First Day",emoji:"🦁",moral:"Trying something new can feel scary, but one brave step at a time helps us grow.",text:"Leo the little lion packed his yellow backpack for school. His tummy felt like tiny butterflies were flying inside. What if I do not know where to sit? Leo whispered. Mama Lion smiled and said, Take one brave breath, then one brave step. At school, Leo saw a bunny looking worried too. Leo took a breath and said, Would you like to sit with me? The bunny smiled. Soon they built blocks, listened to a story, and drew bright suns. At bedtime, Leo said, I was nervous, but I was brave. Mama Lion hugged him. Brave does not mean you are never scared. Brave means you try. Leo closed his eyes, proud and peaceful."},
+{title:"Maya Moon and the Sharing Star",emoji:"🌙",moral:"Sharing kindness makes everyone’s light shine brighter.",text:"High above the sleepy town, Maya Moon watched the stars twinkle. One small star named Pip was sad because his sparkle felt tiny. Maya Moon said, Come closer. Let us shine together. Pip moved near the moon and glowed a little brighter. Then another star joined, and another, until the sky looked like a blanket of glitter. Down below, a child looked up and smiled. The sky is beautiful tonight, she whispered. Pip felt warm inside. He learned that he did not need to shine the biggest. When stars shared their light, the whole sky became magical. Maya Moon hummed a soft lullaby, and the town drifted into dreams."},
+{title:"The Little Red Pencil",emoji:"✏️",moral:"Mistakes are part of learning. Erase, try again, and keep going.",text:"A little red pencil wanted to write perfect letters. First, it tried to write A, but the line leaned sideways. Oh no, said the pencil. The eraser gently whispered, That is why I am here. Rub, rub, rub. The pencil tried again. This time the A stood tall. Then it wrote B, C, and D. Some letters were wiggly, and some were neat, but every letter was practice. At the end of the day, the pencil looked at the page. It was full of brave tries. The pencil smiled and said, I am not perfect, but I am learning. The eraser smiled too. That is the best kind of page."},
+{title:"Nina and the Quiet Dragon",emoji:"🐉",moral:"Big feelings can calm down with breathing and kind words.",text:"Nina had a tiny dragon who lived in her pocket. When Nina felt angry, the dragon puffed little smoke clouds. One day, Nina’s blocks fell down. Puff, puff, puff! The dragon filled the room with smoke. Nina remembered her teacher’s words: smell the flower, blow the candle. She breathed in slowly, then breathed out gently. The dragon copied her. In, out. In, out. The smoke disappeared. Nina rebuilt the tower, one block at a time. Thank you, she told the dragon. You helped me know I had a big feeling. The dragon curled up and yawned. Together they learned that calm breaths can make room for calm choices."},
+{title:"The Sleepy Train to Dreamland",emoji:"🚂",moral:"A calm routine helps the body rest.",text:"The sleepy train rolled softly down the moonlit track. Choo, choo, whispered the engine. First stop: Pajama Station, where everyone put on cozy clothes. Second stop: Brushy Bridge, where teeth sparkled like stars. Third stop: Story Hill, where a gentle tale floated through the air. Last stop: Dreamland. The passengers took three slow breaths. In like smelling a flower. Out like blowing a feather. The train slowed down. Clickety clack became click, clack, hush. The moon tucked a silver blanket over the sky. The sleepy train smiled and rested. Tomorrow would bring new learning, new play, and new sunshine."}
 ];
-const traceItems=[...letters,...Array.from({length:20},(_,i)=>String(i+1)),"|","—","○","△","□"];
 
-function speak(t){lastSpeech=t;if(!("speechSynthesis" in window)){alert("Audio not supported.");return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.rate=.82;u.pitch=1.28;u.volume=1;speechSynthesis.speak(u)}
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const select=document.getElementById("voiceSelect");
+  select.innerHTML="";
+  if(!voices.length){select.innerHTML="<option>No voices loaded yet</option>";return}
+  voices.forEach((v,i)=>{
+    const opt=document.createElement("option");
+    opt.value=i;
+    opt.textContent=`${v.name} (${v.lang})`;
+    select.appendChild(opt);
+  });
+  const saved=localStorage.getItem("girlVoiceIndex");
+  let preferredIndex = saved && voices[saved] ? Number(saved) : findGirlVoiceIndex();
+  select.value=preferredIndex;
+  selectedVoice=voices[preferredIndex];
+}
+function findGirlVoiceIndex(){
+  const names=["Samantha","Google US English","Microsoft Zira","Microsoft Aria","Karen","Tessa","Moira","Fiona","Victoria","Serena","Female","Jenny","Natasha","Sonia"];
+  let idx=voices.findIndex(v=>names.some(n=>v.name.toLowerCase().includes(n.toLowerCase())) && v.lang.toLowerCase().startsWith("en"));
+  if(idx<0) idx=voices.findIndex(v=>v.lang.toLowerCase().startsWith("en"));
+  return idx<0?0:idx;
+}
+function saveVoice(){
+  const idx=Number(document.getElementById("voiceSelect").value);
+  selectedVoice=voices[idx];
+  localStorage.setItem("girlVoiceIndex",idx);
+  testVoice();
+}
+function testVoice(){speak("Hi! This is my story voice. I will read gently and clearly, like a friendly big sister.",false,true)}
+if("speechSynthesis" in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged=loadVoices;
+}
+
+function speak(t,calm=false,forceTest=false){
+  lastSpeech=t;
+  if(!("speechSynthesis" in window)){alert("Audio not supported.");return}
+  speechSynthesis.cancel();
+  let u=new SpeechSynthesisUtterance(t);
+  if(selectedVoice) u.voice=selectedVoice;
+  u.lang=(selectedVoice && selectedVoice.lang) || "en-US";
+  u.rate=calm?.68:.84;
+  u.pitch=calm?1.05:1.45;
+  u.volume=1;
+  speechSynthesis.speak(u);
+}
+function stopVoice(){speechSynthesis.cancel()}
 function repeatLast(){speak(lastSpeech||"Tap a card and I will say what it is.")}
-function intro(){speak("Welcome to Kindergarten Ready Adventure. We will practice letters, sounds, sight words, reading, counting, math, patterns, writing, safety, and classroom skills.")}
-function dailyPractice(){speak("Daily practice. Five minutes letters and sounds. Five minutes sight words and reading. Five minutes counting and math. Five minutes writing your name, sharing, listening, and safety words.")}
+function intro(){speak("Welcome to Kindergartener Learning and Bedtime Stories. We will practice reading, math, writing, science, safety, and calm bedtime stories.")}
+function dailyPractice(){speak("Daily plan. Ten minutes reading and phonics. Ten minutes math. Five minutes writing. Five minutes science or social skills. At night, read one bedtime story and take calm breaths.")}
+function toggleBedtime(){document.body.classList.toggle("bedtime");show("stories");speak("Bedtime mode. Let us slow down, read a gentle story, and get ready for sleep.",true)}
 function show(id){document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");speak("Now practice " + document.querySelector("#"+id+" h2").textContent + ".")}
 function renderStars(){document.getElementById("stars").textContent="⭐".repeat(Math.min(stars,35))+(stars>35?" +"+(stars-35):"")}
-function star(msg){stars++;localStorage.setItem("kStars",stars);renderStars();confetti();speak(msg||"Great job!")}
-function resetStars(){stars=0;localStorage.setItem("kStars",0);renderStars();speak("Stars reset. Let us practice again.")}
+function star(msg){stars++;localStorage.setItem("kStars2",stars);renderStars();confetti();speak(msg||"Great job!")}
+function resetStars(){stars=0;localStorage.setItem("kStars2",0);renderStars();speak("Stars reset. Let us practice again.")}
 function confetti(){let c=document.getElementById("confetti");c.innerHTML="";for(let i=0;i<22;i++){let s=document.createElement("span");s.textContent=["🎉","⭐","🌈","💛","✨"][i%5];s.style.left=Math.random()*100+"vw";s.style.animationDelay=Math.random()*.25+"s";c.appendChild(s)}setTimeout(()=>c.innerHTML="",1600)}
 function card(html,text){let d=document.createElement("div");d.className="card";d.innerHTML=html;d.onclick=()=>speak(text);return d}
 function options(id,opts,ans,good,bad){let box=document.getElementById(id);box.innerHTML="";opts.sort(()=>Math.random()-.5).forEach(o=>{let b=document.createElement("button");b.innerHTML=o.label;b.onclick=()=>o.value===ans?good(o):bad(o);box.appendChild(b)})}
@@ -255,16 +320,28 @@ function initLetters(){let g=document.getElementById("letterGrid");letters.forEa
 function phonicsQuiz(){let l=letters[Math.floor(Math.random()*letters.length)],d=letterData[l];document.getElementById("phonicsQ").textContent=`Which one starts with ${l}?`;document.getElementById("phonicsFb").textContent="";speak(`Which word starts with letter ${l}?`);let opts=[{label:d[2]+" "+d[0],value:d[0]}];while(opts.length<4){let x=letters[Math.floor(Math.random()*letters.length)],dd=letterData[x];if(x!==l&&!opts.some(o=>o.value===dd[0]))opts.push({label:dd[2]+" "+dd[0],value:dd[0]})}options("phonicsOptions",opts,d[0],()=>{document.getElementById("phonicsFb").textContent="🎉 Correct!";star(`Correct. ${d[0]} starts with ${l}.`);setTimeout(phonicsQuiz,900)},()=>{document.getElementById("phonicsFb").textContent="Try again 😊";speak(`Try again. Listen for ${l}.`)})}
 function initWords(){let g=document.getElementById("wordGrid");sight.forEach(w=>g.appendChild(card(`<div class="big">${w}</div><div class="word">Sight word</div>`,`Sight word: ${w}. Read it fast: ${w}.`)));wordQuiz()}
 function wordQuiz(){let ans=sight[Math.floor(Math.random()*sight.length)];document.getElementById("wordQ").textContent=`Tap the word: ${ans}`;document.getElementById("wordFb").textContent="";speak(`Tap the word ${ans}.`);let opts=[ans];while(opts.length<4){let w=sight[Math.floor(Math.random()*sight.length)];if(!opts.includes(w))opts.push(w)}options("wordOptions",opts.map(w=>({label:w,value:w})),ans,()=>{document.getElementById("wordFb").textContent="🎉 Super reading!";star(`Correct. The word is ${ans}.`);setTimeout(wordQuiz,900)},()=>{document.getElementById("wordFb").textContent="Try again 😊";speak(`Try again. Find ${ans}.`)})}
-function initReading(){let g=document.getElementById("cvcGrid");cvc.forEach(([w,e])=>g.appendChild(card(`<div class="big">${w}</div><div class="emoji">${e}</div>`,`Sound it out. ${w.split("").join("... ")}. ${w}.`)));sentences.forEach(s=>g.appendChild(card(`<div class="word" style="font-size:24px">${s}</div><div class="emoji">📖</div>`,`Read this sentence: ${s}`)));readQuiz()}
-function readQuiz(){let [ans,e]=cvc[Math.floor(Math.random()*cvc.length)];document.getElementById("readQ").innerHTML=`Which word matches ${e}?`;document.getElementById("readFb").textContent="";speak(`Which word matches this picture? ${e}`);let opts=[ans];while(opts.length<4){let x=cvc[Math.floor(Math.random()*cvc.length)][0];if(!opts.includes(x))opts.push(x)}options("readOptions",opts.map(w=>({label:w,value:w})),ans,()=>{document.getElementById("readFb").textContent="🎉 You read it!";star(`Correct. The word is ${ans}.`);setTimeout(readQuiz,900)},()=>{document.getElementById("readFb").textContent="Try again 😊";speak("Try sounding it out.")})}
-function initMath(){let g=document.getElementById("numberGrid");for(let i=1;i<=20;i++)g.appendChild(card(`<div class="big">${i}</div><div class="word">${"🍎".repeat(Math.min(i,10))}${i>10?" +"+(i-10):""}</div>`,`This is number ${i}. Count with me. ${Array.from({length:i},(_,j)=>j+1).join(", ")}`));[30,40,50,60,70,80,90,100].forEach(n=>g.appendChild(card(`<div class="big">${n}</div><div class="emoji">🔢</div>`,`This is ${n}. Count by tens: ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred.`)));mathQuiz()}
+function initReading(){let g=document.getElementById("cvcGrid");cvc.forEach(([w,e])=>g.appendChild(card(`<div class="big">${w}</div><div class="emoji">${e}</div>`,`Sound it out. ${w.split("").join("... ")}. ${w}.`)));["I see a cat.","I can jump.","We like to play.","The dog is big.","The frog can hop.","We read a book."].forEach(s=>g.appendChild(card(`<div class="word" style="font-size:24px">${s}</div><div class="emoji">📖</div>`,`Read this sentence: ${s}`)));readQuiz()}
+function readQuiz(){let [ans,e]=cvc[Math.floor(Math.random()*cvc.length)];document.getElementById("readQ").innerHTML=`Which word matches ${e}?`;document.getElementById("readFb").textContent="";speak(`Which word matches this picture?`);let opts=[ans];while(opts.length<4){let x=cvc[Math.floor(Math.random()*cvc.length)][0];if(!opts.includes(x))opts.push(x)}options("readOptions",opts.map(w=>({label:w,value:w})),ans,()=>{document.getElementById("readFb").textContent="🎉 You read it!";star(`Correct. The word is ${ans}.`);setTimeout(readQuiz,900)},()=>{document.getElementById("readFb").textContent="Try again 😊";speak("Try sounding it out.")})}
+function initMath(){let g=document.getElementById("numberGrid");for(let i=1;i<=20;i++)g.appendChild(card(`<div class="big">${i}</div><div class="word">${"🍎".repeat(Math.min(i,10))}${i>10?" +"+(i-10):""}</div>`,`This is number ${i}. Count with me. ${Array.from({length:i},(_,j)=>j+1).join(", ")}`));[30,40,50,60,70,80,90,100].forEach(n=>g.appendChild(card(`<div class="big">${n}</div><div class="emoji">🔢</div>`,`This is ${n}. Count by tens to one hundred.`)));mathQuiz()}
 function mathQuiz(){let type=Math.floor(Math.random()*3),a=Math.floor(Math.random()*6)+1,b=Math.floor(Math.random()*5)+1,ans,q;if(type===0){ans=a+b;q=`${"🍎".repeat(a)} + ${"🍎".repeat(b)} = ?`;speak(`What is ${a} plus ${b}?`)}else if(type===1){if(b>a){let t=a;a=b;b=t}ans=a-b;q=`${"🍎".repeat(a)} − ${"🍎".repeat(b)} = ?`;speak(`What is ${a} minus ${b}?`)}else{ans=Math.max(a,b);q=`Which number is bigger? ${a} or ${b}?`;speak(`Which number is bigger, ${a} or ${b}?`)}document.getElementById("mathQ").innerHTML=q;document.getElementById("mathFb").textContent="";let opts=[ans];while(opts.length<4){let x=Math.floor(Math.random()*12);if(!opts.includes(x))opts.push(x)}options("mathOptions",opts.map(x=>({label:x,value:x})),ans,()=>{document.getElementById("mathFb").textContent="🎉 Math star!";star(`Correct. The answer is ${ans}.`);setTimeout(mathQuiz,1000)},()=>{document.getElementById("mathFb").textContent="Try again 😊";speak("Try again. Count carefully.")})}
 function initPatterns(){let g=document.getElementById("patternGrid");[["AB Pattern","🔴🔵🔴🔵","Red blue red blue. What comes next?"],["AAB Pattern","🟡🟡🟢🟡🟡🟢","Yellow yellow green."],["Sort Colors","🎨","Put same colors together."],["Sort Size","🐘🐭","Big and little."],["More","🍎🍎🍎","More means a bigger amount."],["Less","🍎","Less means a smaller amount."]].forEach(x=>g.appendChild(card(`<div class="emoji">${x[1]}</div><div>${x[0]}</div><div class="word">${x[2]}</div>`,`${x[0]}. ${x[2]}`)));patternQuiz()}
 function patternQuiz(){let ans="🔴";document.getElementById("patternQ").textContent="What comes next? 🔴 🔵 🔴 🔵";document.getElementById("patternFb").textContent="";speak("What comes next in the pattern? Red, blue, red, blue.");options("patternOptions",["🔴","🔵","🟢","🟡"].map(x=>({label:x,value:x})),ans,()=>{document.getElementById("patternFb").textContent="🎉 Pattern power!";star("Correct. Red comes next.");setTimeout(patternQuiz,1200)},()=>{document.getElementById("patternFb").textContent="Try again 😊";speak("Try again. Red, blue, red, blue, what comes next?")})}
 function initShapesColors(){let sg=document.getElementById("shapeGrid");shapes.forEach(([n,cls,t])=>sg.appendChild(card(`<div class="shape ${cls}"></div><div>${n}</div>`,`This is a ${n}. ${t}`)));let cg=document.getElementById("colorGrid");colors.forEach(([n,h])=>cg.appendChild(card(`<div class="swatch" style="background:${h}"></div><div>${n}</div>`,`This color is ${n}. Can you find something ${n}?`)))}
-function initCalendar(){document.getElementById("daysGrid").innerHTML=days.map(d=>`<div class="card" onclick="speak('${d}. This is a day of the week. Today can be ${d}.')"><div class="emoji">📅</div><div>${d}</div></div>`).join("");document.getElementById("monthsGrid").innerHTML=months.map(m=>`<div class="card" onclick="speak('${m}. This is a month of the year.')"><div class="emoji">🗓️</div><div>${m}</div></div>`).join("");fill("weatherGrid",weather.map(x=>[x[0],x[1],`${x[0]} weather.`]))}
-function initChecklist(){let g=document.getElementById("checkGrid");checks.forEach(([t,d])=>{let div=document.createElement("div");div.className="skill";div.innerHTML=`✅ ${t}<br><span style="font-size:15px">${d}</span>`;div.onclick=()=>speak(`${t}. ${d}`);g.appendChild(div)})}
-function sayTrace(){let x=traceItems[traceIndex];if(/[A-Z]/.test(x)){let d=letterData[x];speak(`Trace letter ${x}. Start at the top. ${x} says ${d[1]}. ${x} is for ${d[0]}.`)}else if(!isNaN(Number(x)))speak(`Trace number ${x}. Start at the top and write carefully.`);else speak(`Trace this pre writing line: ${x}.`)}
+function initCalendar(){document.getElementById("daysGrid").innerHTML=days.map(d=>`<div class="card" onclick="speak('${d}. This is a day of the week.')"><div class="emoji">📅</div><div>${d}</div></div>`).join("");document.getElementById("monthsGrid").innerHTML=months.map(m=>`<div class="card" onclick="speak('${m}. This is a month of the year.')"><div class="emoji">🗓️</div><div>${m}</div></div>`).join("");fill("weatherGrid",weather)}
+function initStories(){
+  let g=document.getElementById("storyGrid");
+  stories.forEach((s,i)=>{let d=document.createElement("div");d.className="card";d.innerHTML=`<div class="emoji">${s.emoji}</div><div>${s.title}</div><div class="word">Bedtime story</div>`;d.onclick=()=>selectStory(i);g.appendChild(d)})
+}
+function selectStory(i){
+  currentStory=stories[i];
+  document.getElementById("storyText").innerHTML=`<div class="story-title">${currentStory.emoji} ${currentStory.title}</div>${currentStory.text}<br><br><b>Moral:</b> ${currentStory.moral}`;
+  speak(`Story selected. ${currentStory.title}. Tap read story when you are ready.`,true)
+}
+function readCurrentStory(){if(!currentStory){speak("Please pick a bedtime story first.",true);return}speak(currentStory.title+". "+currentStory.text,true)}
+function readMoral(){if(!currentStory){speak("Please pick a story first.",true);return}speak("The moral is: "+currentStory.moral,true)}
+function calmBreathing(){speak("Let us take three calm breaths. Breathe in slowly like smelling a flower. One, two, three. Breathe out slowly like blowing a feather. One, two, three. Again. Breathe in. One, two, three. Breathe out. One, two, three. Last time. Breathe in. One, two, three. Breathe out. One, two, three. Good night, little superstar.",true)}
+
+function sayTrace(){let x=traceItems[traceIndex];if(/[A-Z]/.test(x)){let d=letterData[x];speak(`Trace letter ${x}. Start at the top. ${x} says ${d[1]}. ${x} is for ${d[0]}.`)}else if(!isNaN(Number(x)))speak(`Trace number ${x}. Start at the top and write carefully.`);else speak(`Trace or write ${x}.`)}
 function updateTrace(){document.getElementById("traceBox").textContent=traceItems[traceIndex];sayTrace()}
 function nextTrace(){traceIndex=(traceIndex+1)%traceItems.length;updateTrace()}
 function prevTrace(){traceIndex=(traceIndex-1+traceItems.length)%traceItems.length;updateTrace()}
@@ -276,7 +353,7 @@ function stop(){drawing=false}
 function clearCanvas(){ctx.clearRect(0,0,canvas.width,canvas.height);speak("Clean board. Try again.")}
 canvas.addEventListener("mousedown",start);canvas.addEventListener("mousemove",draw);canvas.addEventListener("mouseup",stop);canvas.addEventListener("mouseleave",stop);canvas.addEventListener("touchstart",start,{passive:false});canvas.addEventListener("touchmove",draw,{passive:false});canvas.addEventListener("touchend",stop);
 
-initLetters();initWords();initReading();initMath();initPatterns();initShapesColors();initCalendar();fill("scienceGrid",science);fill("socialGrid",social);fill("safetyGrid",safety);initChecklist();renderStars();
+initLetters();initWords();initReading();initMath();initPatterns();initShapesColors();initCalendar();fill("scienceGrid",science);fill("socialGrid",social);fill("safetyGrid",safety);initStories();renderStars();
 </script>
 </body>
 </html>

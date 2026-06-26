@@ -289,6 +289,189 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
 .roomScene{min-height:230px;border-radius:30px;border:5px solid #fff;background:linear-gradient(#d0ebff,#fff3bf);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:inset 0 -35px 0 rgba(81,207,102,.25)}
 .roomDecor{font-size:34px;min-height:42px}.bigPet{font-size:110px;animation:bounce 1.7s infinite ease-in-out}
 .stepList{text-align:left;line-height:1.45;font-size:18px}.experimentBox{background:#f8f9fa;border:4px solid #74c0fc;border-radius:26px;padding:14px;color:#263238;font-weight:900}
+
+/* Expanded learning upgrade */
+.planetOrbit {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:12px;
+}
+.planetCard {
+  background:radial-gradient(circle at top,#fff,#e7f5ff);
+  border:4px solid #74c0fc;
+  border-radius:28px;
+  padding:14px;
+  color:#263238;
+  text-align:center;
+  font-weight:900;
+  box-shadow:0 7px 0 #a5d8ff;
+}
+.mapPanel {
+  background:linear-gradient(135deg,#d0ebff,#ebfbee);
+  border:5px solid white;
+  border-radius:30px;
+  padding:18px;
+  color:#263238;
+  font-weight:900;
+  box-shadow:inset 0 -30px 0 rgba(32,201,151,.18);
+}
+.bigQuizStats {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:10px;
+}
+.topicBadge {
+  display:inline-block;
+  background:#e7f5ff;
+  border:3px solid #74c0fc;
+  border-radius:999px;
+  padding:8px 12px;
+  margin:4px;
+  color:#1864ab;
+  font-weight:900;
+}
+.factBox {
+  background:#fff;
+  color:#263238;
+  border:4px solid #ffd43b;
+  border-radius:24px;
+  padding:14px;
+  margin:10px 0;
+  font-weight:900;
+  box-shadow:0 6px 0 #ffe066;
+}
+
+/* World home redesign */
+.worldHomeHero {
+  background:linear-gradient(135deg,#fff3bf,#d0ebff,#ffd8e8);
+  border:6px solid #fff;
+  border-radius:36px;
+  padding:20px;
+  box-shadow:0 10px 0 rgba(0,0,0,.14),0 18px 30px rgba(0,0,0,.12);
+  text-align:center;
+  color:#263238;
+  margin-bottom:18px;
+}
+.worldHomeHero h2 {
+  color:#d6336c;
+  font-size:clamp(30px,6vw,56px);
+  margin:0 0 8px;
+}
+.kidWorldGrid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+}
+.kidWorld {
+  min-height:230px;
+  border-radius:34px;
+  border:6px solid white;
+  padding:18px;
+  color:white;
+  text-align:center;
+  font-weight:900;
+  box-shadow:0 10px 0 rgba(0,0,0,.16),0 18px 30px rgba(0,0,0,.12);
+  position:relative;
+  overflow:hidden;
+}
+.kidWorld:before {
+  content:"";
+  position:absolute;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  background:rgba(255,255,255,.22);
+  right:-35px;
+  top:-35px;
+}
+.kidWorld:hover {
+  transform:translateY(-4px) scale(1.02);
+}
+.kidWorldEmoji {
+  font-size:68px;
+  line-height:1;
+  position:relative;
+  z-index:1;
+}
+.kidWorld h3 {
+  font-size:25px;
+  margin:8px 0 6px;
+  position:relative;
+  z-index:1;
+}
+.kidWorld p {
+  font-size:16px;
+  margin:0 0 12px;
+  position:relative;
+  z-index:1;
+}
+.kidWorld button {
+  background:white;
+  color:#263238;
+  position:relative;
+  z-index:1;
+}
+.world1{background:linear-gradient(135deg,#ff5fa2,#f06595)}
+.world2{background:linear-gradient(135deg,#ff922b,#ffd43b);color:#5c3d00}
+.world3{background:linear-gradient(135deg,#20c997,#51cf66)}
+.world4{background:linear-gradient(135deg,#4dabf7,#1864ab)}
+.world5{background:linear-gradient(135deg,#12b886,#0c8599)}
+.world6{background:linear-gradient(135deg,#845ef7,#5f3dc4)}
+.world7{background:linear-gradient(135deg,#364fc7,#748ffc)}
+.world8{background:linear-gradient(135deg,#ff8787,#e64980)}
+.world9{background:linear-gradient(135deg,#fab005,#fd7e14);color:#5c3d00}
+.world10{background:linear-gradient(135deg,#15aabf,#1098ad)}
+.world11{background:linear-gradient(135deg,#7950f2,#343a40)}
+.world12{background:linear-gradient(135deg,#cc5de8,#7048e8)}
+.worldModal {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99;
+  padding:18px;
+}
+.worldModal.show {display:flex}
+.worldModalCard {
+  width:min(760px,94vw);
+  max-height:90vh;
+  overflow:auto;
+  background:#fff;
+  color:#263238;
+  border:6px solid #fff;
+  border-radius:36px;
+  padding:20px;
+  box-shadow:0 18px 50px rgba(0,0,0,.3);
+}
+.worldModalHeader {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+.worldModalEmoji {font-size:64px}
+.worldLessonButtons {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+.compactTopMenu {
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0;
+}
+.compactTopMenu button {
+  background:#fff;
+  color:#d6336c;
+}
+.hiddenLongMenu {
+  display:none;
+}
 </style>
 </head>
 <body>
@@ -296,7 +479,7 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <h1>🎒 Kindergartener Super App 🌈</h1>
   <div class="sub">Ages 5–7 • Lessons • Quizzes • Rewards • Pet • Stories • Coloring • Imagination</div>
   <div class="top">
-    <button class="white" onclick="intro()">🔊 Start</button>
+    <button class="white" onclick="show('worldHome');intro()">🔊 Start</button>
     <button class="gold" onclick="dailyPractice()">📅 Daily Plan</button>
     <button class="greenbtn" onclick="show('quizzone')">🏆 Quiz Zone</button>
     <button class="pinkbtn" onclick="movementBreak()">💃 Dance Break</button>
@@ -329,7 +512,8 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <div class="stat">🔥 Streak<br><span id="streak">1</span></div>
 </div>
 
-<div class="tabs">
+<div class="compactTopMenu"><button onclick="show('worldHome')">🗺️ World Map</button><button onclick="show('dashboard')">👨‍👩‍👧 Parent</button><button onclick="show('pet')">🐶 Pet</button><button onclick="show('daily')">📅 Daily</button><button onclick="show('quizzone')">🏆 Quiz</button></div>
+<div class="tabs hiddenLongMenu" id="oldMenu">
   <button class="tab" onclick="show('dashboard')">👨‍👩‍👧 Parent</button>
   <button class="tab" onclick="show('adventure')">🗺️ Adventure</button>
   <button class="tab" onclick="show('avatar')">🧒 Avatar</button>
@@ -351,9 +535,16 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <button class="tab" onclick="show('experiments')">🧪 Experiments</button>
   <button class="tab" onclick="show('geo')">🌍 World</button>
   <button class="tab" onclick="show('space')">🪐 Space</button>
+  <button class="tab" onclick="show('solarSystem')">☀️ Solar</button>
+  <button class="tab" onclick="show('worldmap')">🗺️ Map</button>
+  <button class="tab" onclick="show('body')">🫀 Body</button>
+  <button class="tab" onclick="show('animalsPlus')">🐾 Animals+</button>
+  <button class="tab" onclick="show('bigQuiz')">🎓 Big Quiz</button>
   <button class="tab" onclick="show('dino')">🦖 Dinos</button>
   <button class="tab" onclick="show('coding')">🤖 Coding</button>
   <button class="tab" onclick="show('science')">🌱 Science</button>
+  <button class="tab" onclick="show('fruits')">🍎 Fruits</button>
+  <button class="tab" onclick="show('vegetables')">🥦 Veggies</button>
   <button class="tab" onclick="show('safety')">🛡️ Safety</button>
   <button class="tab" onclick="show('trace')">✏️ Writing</button>
   <button class="tab" onclick="show('stories')">🌙 Stories</button>
@@ -376,6 +567,36 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <button class="tab" onclick="show('sillystory')">🤪 Story Maker</button>
 </div>
 
+
+
+<section id="worldHome" class="section active">
+  <div class="worldHomeHero">
+    <h2>🌈 Choose Your Learning World</h2>
+    <p>Pick a colorful world. Each world has lessons, games, quizzes, crafts, stories, and rewards.</p>
+    <div class="row" style="justify-content:center">
+      <button class="gold" onclick="speak('Choose a world to start your adventure. Each world has fun learning games and rewards!')">🔊 How It Works</button>
+      <button class="white" onclick="toggleFullMenu()">📋 Show Full Menu</button>
+    </div>
+  </div>
+  <div class="kidWorldGrid" id="kidWorldGrid"></div>
+</section>
+
+<div class="worldModal" id="worldModal">
+  <div class="worldModalCard">
+    <div class="worldModalHeader">
+      <div class="worldModalEmoji" id="worldModalEmoji">🏰</div>
+      <div>
+        <h2 id="worldModalTitle">Alphabet Kingdom</h2>
+        <div id="worldModalDesc" class="word">Letters and sounds</div>
+      </div>
+    </div>
+    <div class="hint" id="worldModalHint">Choose an activity below.</div>
+    <div class="worldLessonButtons" id="worldLessonButtons"></div>
+    <div class="row">
+      <button class="dark" onclick="closeWorld()">Close</button>
+    </div>
+  </div>
+</div>
 
 <section id="adventure" class="section">
   <h2>Adventure Learning World Map</h2>
@@ -506,7 +727,7 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   </div>
 </section>
 
-<section id="phonics" class="section active"><h2>Phonics and Beginning Sounds</h2><div class="hint">Tap letters. Then try the quiz.</div><div class="grid" id="letterGrid"></div><div class="quiz"><div class="question" id="phonicsQ"></div><div class="options" id="phonicsOptions"></div><div class="feedback" id="phonicsFb"></div></div></section>
+<section id="phonics" class="section"><h2>Phonics and Beginning Sounds</h2><div class="hint">Tap letters. Then try the quiz.</div><div class="grid" id="letterGrid"></div><div class="quiz"><div class="question" id="phonicsQ"></div><div class="options" id="phonicsOptions"></div><div class="feedback" id="phonicsFb"></div></div></section>
 <section id="words" class="section"><h2>Sight Words</h2><div class="hint">Tap common words to hear them clearly.</div><div class="grid" id="wordGrid"></div><div class="quiz"><div class="question" id="wordQ"></div><div class="options" id="wordOptions"></div><div class="feedback" id="wordFb"></div></div></section>
 <section id="reading" class="section"><h2>Reading: CVC, Blends, Sentences</h2><div class="hint">Practice sounding out words and reading short sentences.</div><div class="grid" id="cvcGrid"></div><div class="quiz"><div class="question" id="readQ"></div><div class="options" id="readOptions"></div><div class="feedback" id="readFb"></div></div></section>
 <section id="math" class="section"><h2>Math Skills</h2><div class="hint">Count, add, subtract, compare, and skip count.</div><div class="grid" id="numberGrid"></div><div class="quiz"><div class="question" id="mathQ"></div><div class="options" id="mathOptions"></div><div class="feedback" id="mathFb"></div></div></section>
@@ -701,6 +922,124 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
     <button class="greenbtn" onclick="movementBreak()">💃 Movement Break</button>
   </div>
   <div class="imaginationBox" id="musicBox">Tap a music activity.</div>
+</section>
+
+
+<section id="solarSystem" class="section">
+  <h2>Complete Solar System</h2>
+  <div class="hint">Learn all planets, order from the Sun, planet facts, dwarf planets, moons, asteroids, comets, and space words.</div>
+  <div class="row">
+    <button class="gold" onclick="planetOrderSong()">🎵 Planet Order</button>
+    <button class="white" onclick="randomSpaceFact()">🔭 Space Fact</button>
+    <button class="greenbtn" onclick="solarQuiz()">☀️ Solar Quiz</button>
+  </div>
+  <div class="planetOrbit" id="planetGrid"></div>
+  <div class="quiz">
+    <div class="question" id="solarQ">Tap Solar Quiz.</div>
+    <div class="options" id="solarOptions"></div>
+    <div class="feedback" id="solarFb"></div>
+  </div>
+</section>
+
+<section id="worldmap" class="section">
+  <h2>World Map, Continents, Oceans, Landforms</h2>
+  <div class="hint">A beginner-friendly world map lesson: continents, oceans, countries, flags, landmarks, directions, landforms, and map words.</div>
+  <div class="mapPanel">
+    <div style="font-size:64px;text-align:center">🌎 🧭 🗺️ 🌊 ⛰️ 🏜️ 🌲 🏝️</div>
+    <p>Earth has land and water. A map helps us find places. A globe is a round model of Earth.</p>
+    <div id="mapFactBox" class="factBox">Tap a map topic below.</div>
+  </div>
+  <div class="row">
+    <button class="gold" onclick="worldQuiz()">🗺️ World Quiz</button>
+    <button class="white" onclick="randomMapFact()">🌎 Map Fact</button>
+  </div>
+  <div class="grid" id="continentGrid"></div>
+  <div class="grid" id="oceanGrid" style="margin-top:14px"></div>
+  <div class="grid" id="landformGrid" style="margin-top:14px"></div>
+  <div class="quiz">
+    <div class="question" id="worldQ">Tap World Quiz.</div>
+    <div class="options" id="worldOptions"></div>
+    <div class="feedback" id="worldFb"></div>
+  </div>
+</section>
+
+<section id="body" class="section">
+  <h2>Human Body and Health</h2>
+  <div class="hint">Learn body parts, organs, five senses, hygiene, food groups, exercise, sleep, and feelings.</div>
+  <div class="grid" id="bodyGrid"></div>
+  <div class="quiz">
+    <div class="question" id="bodyQ">Tap Body Quiz.</div>
+    <div class="options" id="bodyOptions"></div>
+    <div class="feedback" id="bodyFb"></div>
+  </div>
+  <div class="row"><button class="gold" onclick="bodyQuiz()">🫀 Body Quiz</button></div>
+</section>
+
+<section id="animalsPlus" class="section">
+  <h2>Animals, Habitats, Life Cycles</h2>
+  <div class="hint">Learn animal groups, habitats, babies, diets, life cycles, and fun facts.</div>
+  <div class="grid" id="animalPlusGrid"></div>
+  <div class="quiz">
+    <div class="question" id="animalPlusQ">Tap Animal Quiz.</div>
+    <div class="options" id="animalPlusOptions"></div>
+    <div class="feedback" id="animalPlusFb"></div>
+  </div>
+  <div class="row"><button class="gold" onclick="animalPlusQuiz()">🐾 Animal Quiz</button></div>
+</section>
+
+<section id="bigQuiz" class="section">
+  <h2>Big Learning Quiz Bank</h2>
+  <div class="hint">A large mixed quiz bank across reading, math, science, solar system, world map, animals, body, manners, dining, safety, coding, and imagination.</div>
+  <div class="bigQuizStats">
+    <div class="stat">Big Quiz Score<br><span id="bigQuizScore">0</span></div>
+    <div class="stat">Question #<br><span id="bigQuizCount">0</span></div>
+    <div class="stat">Topic<br><span id="bigQuizTopic">Mixed</span></div>
+  </div>
+  <div class="row">
+    <button class="gold" onclick="nextBigQuiz('mixed')">🌈 Mixed</button>
+    <button class="white" onclick="nextBigQuiz('science')">🌱 Science</button>
+    <button class="white" onclick="nextBigQuiz('space')">🪐 Space</button>
+    <button class="white" onclick="nextBigQuiz('world')">🌎 World</button>
+    <button class="white" onclick="nextBigQuiz('body')">🫀 Body</button>
+    <button class="white" onclick="nextBigQuiz('math')">🔢 Math</button>
+    <button class="white" onclick="nextBigQuiz('reading')">📖 Reading</button>
+  </div>
+  <div class="quiz">
+    <div class="question" id="bigQ">Pick a topic to start.</div>
+    <div class="options" id="bigOptions"></div>
+    <div class="feedback" id="bigFb"></div>
+  </div>
+</section>
+
+
+<section id="fruits" class="section">
+  <h2>Fruit Garden</h2>
+  <div class="hint">Tap a fruit. It will say the fruit name and how it helps the body.</div>
+  <div class="grid" id="fruitGrid"></div>
+  <div class="quiz">
+    <div class="question" id="fruitQ">Tap Fruit Quiz.</div>
+    <div class="options" id="fruitOptions"></div>
+    <div class="feedback" id="fruitFb"></div>
+  </div>
+  <div class="row">
+    <button class="gold" onclick="fruitQuiz()">🍎 Fruit Quiz</button>
+    <button class="white" onclick="randomFruitFact()">🔊 Random Fruit Fact</button>
+  </div>
+</section>
+
+<section id="vegetables" class="section">
+  <h2>Vegetable Farm</h2>
+  <div class="hint">Tap a vegetable. It will say the vegetable name and how it helps the body.</div>
+  <div class="grid" id="vegetableGrid"></div>
+  <div class="quiz">
+    <div class="question" id="vegetableQ">Tap Vegetable Quiz.</div>
+    <div class="options" id="vegetableOptions"></div>
+    <div class="feedback" id="vegetableFb"></div>
+  </div>
+  <div class="row">
+    <button class="gold" onclick="vegetableQuiz()">🥦 Vegetable Quiz</button>
+    <button class="white" onclick="randomVegetableFact()">🔊 Random Vegetable Fact</button>
+  </div>
 </section>
 
 <section id="certificate" class="section">
@@ -1536,7 +1875,428 @@ function sleepPet(){changePetStats(-4,5,0,35);speak("Your pet is resting. Sleep 
 function trainPet(){const tricks=["sit","spin","high five","roll over","dance","fetch"];const trick=tricks[Math.floor(Math.random()*tricks.length)];changePetStats(-5,15,-2,-8);addScore(10,`Your pet learned ${trick}! Training teaches patience and practice.`);}
 function decorateRoom(){const decors=["🧸","🪴","🏀","🛏️","🖼️","🎈","⭐","🌈","🚀","🦴","🎁","🏆"];if((state.coins||0)<3){speak("You need three coins to decorate the pet room.");return;}state.coins-=3;state.decor=state.decor||[];state.decor.push(decors[Math.floor(Math.random()*decors.length)]);if(state.decor.length>6)state.decor.shift();save();renderStats();updatePetMeters();confetti();speak("Room decorated! Your pet room looks more fun.");}
 
+
+/* Massive expanded learning content */
+state={bigQuizScore:0,bigQuizCount:0,...state};
+
+const planets=[
+["Mercury","☿️","Mercury is the closest planet to the Sun. It is small and rocky.","1st"],
+["Venus","🟡","Venus is very hot and has thick clouds.","2nd"],
+["Earth","🌍","Earth is our home. It has land, water, air, plants, animals, and people.","3rd"],
+["Mars","🔴","Mars is called the red planet. Robots have explored Mars.","4th"],
+["Jupiter","🟤","Jupiter is the biggest planet and has a giant storm called the Great Red Spot.","5th"],
+["Saturn","🪐","Saturn has beautiful rings made of ice and rock.","6th"],
+["Uranus","🔵","Uranus is an ice giant that spins on its side.","7th"],
+["Neptune","🔵","Neptune is far from the Sun and has strong winds.","8th"]
+];
+const spaceMore=[
+["Sun","☀️","The Sun is a star. It gives Earth light and warmth."],
+["Moon","🌙","The Moon goes around Earth."],
+["Dwarf Planet Pluto","🤍","Pluto is a dwarf planet far away."],
+["Asteroid","🪨","Asteroids are rocky objects in space."],
+["Comet","☄️","Comets are icy objects with tails when near the Sun."],
+["Galaxy","🌌","A galaxy is a huge group of stars."],
+["Milky Way","🌌","The Milky Way is our galaxy."],
+["Astronaut","🧑‍🚀","Astronauts travel and work in space."],
+["Rocket","🚀","A rocket launches things into space."],
+["Orbit","🔁","Orbit means to go around something in space."],
+["Telescope","🔭","A telescope helps us see far away objects."],
+["Gravity","🧲","Gravity pulls things toward each other."]
+];
+const continents=[
+["North America","🌎","North America has countries like the United States, Canada, and Mexico."],
+["South America","🌎","South America has the Amazon rainforest."],
+["Europe","🌍","Europe has many countries and old castles."],
+["Africa","🌍","Africa has deserts, savannas, and many amazing animals."],
+["Asia","🌏","Asia is the largest continent."],
+["Australia","🇦🇺","Australia is both a country and a continent area."],
+["Antarctica","🐧","Antarctica is very cold and icy."]
+];
+const oceans=[
+["Pacific Ocean","🌊","The Pacific is the largest ocean."],
+["Atlantic Ocean","🌊","The Atlantic is between the Americas and Europe/Africa."],
+["Indian Ocean","🌊","The Indian Ocean is near India, Africa, and Australia."],
+["Southern Ocean","🌊","The Southern Ocean is around Antarctica."],
+["Arctic Ocean","🌊","The Arctic Ocean is very cold near the North Pole."]
+];
+const landforms=[
+["Mountain","⛰️","A mountain is tall land."],
+["Valley","🏞️","A valley is low land between hills or mountains."],
+["River","🏞️","A river is moving water."],
+["Lake","湖","A lake is water with land around it."],
+["Island","🏝️","An island has water all around it."],
+["Desert","🏜️","A desert is very dry."],
+["Forest","🌲","A forest has many trees."],
+["Volcano","🌋","A volcano can release lava."],
+["Beach","🏖️","A beach is land next to water."],
+["Cave","🕳️","A cave is a hollow place in rock."]
+];
+const bodyHealth=[
+["Brain","🧠","Your brain helps you think, learn, remember, and control your body."],
+["Heart","❤️","Your heart pumps blood through your body."],
+["Lungs","🫁","Your lungs help you breathe air."],
+["Stomach","😊","Your stomach helps break down food."],
+["Bones","🦴","Bones support your body and protect organs."],
+["Muscles","💪","Muscles help you move."],
+["Skin","🖐️","Skin covers and protects your body."],
+["Eyes","👀","Eyes help you see."],
+["Ears","👂","Ears help you hear."],
+["Nose","👃","Nose helps you smell and breathe."],
+["Tongue","👅","Tongue helps you taste."],
+["Teeth","🦷","Teeth help you chew food."],
+["Wash Hands","🧼","Washing hands helps remove germs."],
+["Brush Teeth","🪥","Brushing keeps teeth clean and healthy."],
+["Healthy Food","🥦","Healthy foods help your body grow."],
+["Exercise","🏃","Exercise makes your body strong."],
+["Sleep","🛌","Sleep helps your brain and body rest."],
+["Water","💧","Water helps your body feel good."]
+];
+const animalPlus=[
+["Mammal","🐶","Mammals often have fur or hair and babies drink milk."],
+["Bird","🐦","Birds have feathers and many can fly."],
+["Fish","🐟","Fish live in water and have gills."],
+["Reptile","🐢","Reptiles often have scales and lay eggs."],
+["Amphibian","🐸","Amphibians can live in water and on land."],
+["Insect","🐞","Insects have six legs."],
+["Herbivore","🌿","Herbivores eat plants."],
+["Carnivore","🍖","Carnivores eat meat."],
+["Omnivore","🍎","Omnivores eat plants and animals."],
+["Habitat","🏡","A habitat is an animal's home."],
+["Camouflage","🦎","Camouflage helps animals hide."],
+["Migration","🦋","Migration means animals travel to another place."],
+["Life Cycle","🔁","A life cycle shows how living things grow and change."],
+["Egg","🥚","Many animals hatch from eggs."],
+["Baby Animal","🐣","Baby animals grow into adults."],
+["Nocturnal","🦉","Nocturnal animals are active at night."]
+];
+
+function initExpandedLearning(){
+  const pg=document.getElementById("planetGrid");
+  if(pg && !pg.children.length){
+    planets.forEach(p=>pg.appendChild(card(`<div class="emoji">${p[1]}</div><div>${p[0]}</div><div class="word">${p[3]} planet from Sun</div>`,`${p[0]}. ${p[3]} planet from the Sun. ${p[2]}`)));
+    spaceMore.forEach(s=>pg.appendChild(card(`<div class="emoji">${s[1]}</div><div>${s[0]}</div><div class="word">${s[2]}</div>`,`${s[0]}. ${s[2]}`)));
+  }
+  if(document.getElementById("continentGrid") && !document.getElementById("continentGrid").children.length) fill("continentGrid",continents);
+  if(document.getElementById("oceanGrid") && !document.getElementById("oceanGrid").children.length) fill("oceanGrid",oceans);
+  if(document.getElementById("landformGrid") && !document.getElementById("landformGrid").children.length) fill("landformGrid",landforms);
+  if(document.getElementById("bodyGrid") && !document.getElementById("bodyGrid").children.length) fill("bodyGrid",bodyHealth);
+  if(document.getElementById("animalPlusGrid") && !document.getElementById("animalPlusGrid").children.length) fill("animalPlusGrid",animalPlus);
+}
+
+function planetOrderSong(){
+  speak("Planet order from the Sun. Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune. My Very Educated Mother Just Served Us Noodles!");
+}
+function randomSpaceFact(){
+  const all=[...planets.map(p=>[p[0],p[1],p[2]]),...spaceMore];
+  const f=all[Math.floor(Math.random()*all.length)];
+  speak(`Space fact. ${f[0]}. ${f[2]}`);
+}
+function randomMapFact(){
+  const all=[...continents,...oceans,...landforms];
+  const f=all[Math.floor(Math.random()*all.length)];
+  const box=document.getElementById("mapFactBox");
+  if(box) box.textContent=`${f[1]} ${f[0]}: ${f[2]}`;
+  speak(`Map fact. ${f[0]}. ${f[2]}`);
+}
+
+function askQuiz(qid, oid, fid, q, answer, opts, goodMsg, nextFn, cat){
+  document.getElementById(qid).textContent=q;
+  document.getElementById(fid).textContent="";
+  speak(q);
+  options(oid,opts.map(x=>({label:x,value:x})),answer,()=>{
+    document.getElementById(fid).textContent="🎉 Correct!";
+    addScore(15,goodMsg||"Correct. Fifteen points!",cat||null);
+    setTimeout(nextFn,900);
+  },()=>{
+    document.getElementById(fid).textContent="Try again 😊";
+    speak("Try again. Think carefully.");
+  });
+}
+function solarQuiz(){
+  const qset=[
+    ["Which planet is closest to the Sun?","Mercury",["Mercury","Earth","Saturn","Neptune"]],
+    ["Which planet do we live on?","Earth",["Earth","Mars","Venus","Jupiter"]],
+    ["Which planet has famous rings?","Saturn",["Saturn","Mercury","Mars","Earth"]],
+    ["Which is the biggest planet?","Jupiter",["Jupiter","Venus","Earth","Uranus"]],
+    ["What is the Sun?","A star",["A star","A planet","A moon","A rock"]],
+    ["What goes around Earth?","Moon",["Moon","Jupiter","Comet","Galaxy"]],
+    ["What is Pluto called now?","Dwarf planet",["Dwarf planet","Ocean","Star","Cloud"]],
+    ["What tool helps us see far away space objects?","Telescope",["Telescope","Fork","Pencil","Backpack"]],
+    ["What does orbit mean?","Go around",["Go around","Fall asleep","Eat food","Draw"]]
+  ];
+  const q=qset[Math.floor(Math.random()*qset.length)];
+  askQuiz("solarQ","solarOptions","solarFb",q[0],q[1],q[2],"Space scientist! Correct.",solarQuiz);
+}
+function worldQuiz(){
+  const qset=[
+    ["How many continents are there?","7",["7","3","10","1"]],
+    ["Which is the largest ocean?","Pacific Ocean",["Pacific Ocean","Arctic Ocean","Lake","River"]],
+    ["Which continent is very cold and icy?","Antarctica",["Antarctica","Africa","Asia","Europe"]],
+    ["What shows places on Earth?","Map",["Map","Spoon","Pillow","Shoe"]],
+    ["What is a round model of Earth?","Globe",["Globe","Cup","Tree","Car"]],
+    ["What is tall land called?","Mountain",["Mountain","Ocean","Cloud","Chair"]],
+    ["What has water all around it?","Island",["Island","Valley","Desert","Forest"]],
+    ["Which continent is the largest?","Asia",["Asia","Australia","Antarctica","Europe"]]
+  ];
+  const q=qset[Math.floor(Math.random()*qset.length)];
+  askQuiz("worldQ","worldOptions","worldFb",q[0],q[1],q[2],"World explorer! Correct.",worldQuiz);
+}
+function bodyQuiz(){
+  const qset=[
+    ["Which organ helps you think?","Brain",["Brain","Foot","Tooth","Elbow"]],
+    ["Which organ pumps blood?","Heart",["Heart","Nose","Hand","Hair"]],
+    ["What helps you breathe?","Lungs",["Lungs","Shoes","Teeth","Backpack"]],
+    ["What helps remove germs?","Wash hands",["Wash hands","Touch everything","Skip soap","Eat candy"]],
+    ["What helps teeth stay clean?","Brush teeth",["Brush teeth","Never brush","Chew toys","Drink soda"]],
+    ["Which sense uses your ears?","Hearing",["Hearing","Tasting","Smelling","Seeing"]],
+    ["What helps your body rest?","Sleep",["Sleep","Shouting","Running forever","Skipping bedtime"]]
+  ];
+  const q=qset[Math.floor(Math.random()*qset.length)];
+  askQuiz("bodyQ","bodyOptions","bodyFb",q[0],q[1],q[2],"Body expert! Correct.",bodyQuiz);
+}
+function animalPlusQuiz(){
+  const qset=[
+    ["Which animals have feathers?","Birds",["Birds","Fish","Rocks","Cars"]],
+    ["How many legs do insects have?","6",["6","2","10","0"]],
+    ["What do herbivores eat?","Plants",["Plants","Only shoes","Only rocks","Only candy"]],
+    ["What is an animal's home called?","Habitat",["Habitat","Pencil","Planet","Book"]],
+    ["Which animals are active at night?","Nocturnal",["Nocturnal","Tiny","Round","Colorful"]],
+    ["What helps animals hide?","Camouflage",["Camouflage","Backpack","Spoon","Table"]],
+    ["What do fish use to breathe in water?","Gills",["Gills","Ears","Shoes","Feathers"]]
+  ];
+  const q=qset[Math.floor(Math.random()*qset.length)];
+  askQuiz("animalPlusQ","animalPlusOptions","animalPlusFb",q[0],q[1],q[2],"Animal expert! Correct.",animalPlusQuiz);
+}
+
+const bigQuizBank=[
+  ["science","What does a plant need?","Sun and water",["Sun and water","Shoes","Candy only","A pillow"]],
+  ["science","What do magnets pull?","Some metals",["Some metals","All paper","Water","Clouds"]],
+  ["science","What happens to ice when it gets warm?","It melts",["It melts","It sings","It grows fur","It turns to a toy"]],
+  ["science","Which sense uses your nose?","Smell",["Smell","Hearing","Seeing","Touch"]],
+  ["space","Which planet is red?","Mars",["Mars","Earth","Saturn","Venus"]],
+  ["space","Which planet has rings?","Saturn",["Saturn","Mars","Mercury","Earth"]],
+  ["space","What is the Sun?","A star",["A star","A planet","A moon","A backpack"]],
+  ["space","What planet is 3rd from the Sun?","Earth",["Earth","Venus","Mars","Neptune"]],
+  ["world","What is a map for?","Showing places",["Showing places","Eating soup","Sleeping","Brushing teeth"]],
+  ["world","How many oceans are usually taught?","5",["5","2","9","1"]],
+  ["world","Which is icy and cold?","Antarctica",["Antarctica","Desert","Beach","Jungle"]],
+  ["world","Which landform is very dry?","Desert",["Desert","River","Lake","Island"]],
+  ["body","What pumps blood?","Heart",["Heart","Book","Nose","Knee"]],
+  ["body","What helps you breathe?","Lungs",["Lungs","Shoes","Hair","Teeth"]],
+  ["body","What should you do before eating?","Wash hands",["Wash hands","Touch mud","Skip soap","Run away"]],
+  ["math","What is 5 + 3?","8",["8","6","2","10"]],
+  ["math","Which is bigger, 9 or 4?","9",["9","4","Same","0"]],
+  ["math","What comes after 19?","20",["20","18","12","30"]],
+  ["reading","What rhymes with cat?","hat",["hat","dog","sun","tree"]],
+  ["reading","Which word is a sight word?","the",["the","xqz","bbb","zzz"]],
+  ["reading","What sound does B make?","buh",["buh","sss","mmm","rrr"]],
+  ["animals","What do birds have?","Feathers",["Feathers","Wheels","Pages","Shoes"]],
+  ["animals","A baby frog starts as a?","Tadpole",["Tadpole","Puppy","Kitten","Calf"]],
+  ["manners","What do you say when asking?","Please",["Please","Now","Mine","Move"]],
+  ["dining","How should you chew?","Mouth closed",["Mouth closed","Mouth open","While running","Very loudly"]],
+  ["coding","What does a loop do?","Repeat",["Repeat","Sleep","Eat","Paint"]],
+  ["science","Which fruit has potassium that helps muscles?","Banana",["Banana","Chair","Onion","Book"]],
+  ["science","Which vegetable helps your eyes with vitamin A?","Carrot",["Carrot","Cookie","Rice","Water"]],
+  ["science","Which fruit helps hydration because it has lots of water?","Watermelon",["Watermelon","Cracker","Potato","Bread"]],
+  ["science","Which vegetable has iron and vitamins?","Spinach",["Spinach","Candy","Soda","Cake"]]
+];
+function nextBigQuiz(topic="mixed"){
+  let pool=topic==="mixed"?bigQuizBank:bigQuizBank.filter(q=>q[0]===topic);
+  if(!pool.length) pool=bigQuizBank;
+  const q=pool[Math.floor(Math.random()*pool.length)];
+  state.bigQuizCount=(state.bigQuizCount||0)+1;
+  document.getElementById("bigQuizCount").textContent=state.bigQuizCount;
+  document.getElementById("bigQuizTopic").textContent=topic;
+  document.getElementById("bigQ").textContent=q[1];
+  document.getElementById("bigFb").textContent="";
+  speak(q[1]);
+  options("bigOptions",q[3].map(x=>({label:x,value:x})),q[2],()=>{
+    state.bigQuizScore=(state.bigQuizScore||0)+20;
+    document.getElementById("bigQuizScore").textContent=state.bigQuizScore;
+    addScore(20,`Correct big quiz answer. Twenty points!`,q[0]==="reading"?"reading":q[0]==="math"?"math":q[0]==="manners"||q[0]==="dining"?"manners":null);
+    setTimeout(()=>nextBigQuiz(topic),900);
+  },()=>{
+    document.getElementById("bigFb").textContent="Try again 😊";
+    speak("Try again. You are learning!");
+  });
+}
+
+
+/* World map organization */
+const learningWorlds=[
+  {cls:"world1",emoji:"🏰",title:"Alphabet Kingdom",desc:"Letters, sounds, phonics, tracing, and letter games.",sections:[["🔤 Phonics","phonics"],["👀 Sight Words","words"],["✏️ Writing","trace"],["🎮 Letter Pop","games"],["🏆 Reading Quiz","quizzone"]]},
+  {cls:"world2",emoji:"🔢",title:"Number Mountain",desc:"Counting, addition, subtraction, patterns, logic, and math games.",sections:[["🔢 Math Skills","math"],["🧩 Logic","logic"],["🎈 Math Balloons","games"],["🧠 Brain Boosters","brain"],["🏆 Math Quiz","bigQuiz"]]},
+  {cls:"world3",emoji:"📚",title:"Reading Forest",desc:"CVC words, blends, sentences, read-along, stories, and spelling.",sections:[["📖 Reading","reading"],["👆 Read Along","readAlong"],["🔠 Spelling","spellbuild"],["📚 Choice Story","interactiveStory"],["🌙 Bedtime Stories","stories"]]},
+  {cls:"world4",emoji:"🧪",title:"Science Lab",desc:"Experiments, plants, magnets, water, weather, body, and observation.",sections:[["🌱 Science","science"],["🍎 Fruit Garden","fruits"],["🥦 Vegetable Farm","vegetables"],["🧪 Experiments","experiments"],["🫀 Human Body","body"],["🎓 Science Quiz","bigQuiz"]]},
+  {cls:"world5",emoji:"🌎",title:"Around the World",desc:"World map, continents, oceans, flags, landforms, directions, and cultures.",sections:[["🗺️ World Map","worldmap"],["🌍 Geography","geo"],["📅 Calendar","calendar"],["🖨️ Practice Pages","printables"],["🎓 World Quiz","bigQuiz"]]},
+  {cls:"world6",emoji:"🦖",title:"Dinosaur Island",desc:"Dinosaurs, fossils, habitats, herbivores, carnivores, and dino crafts.",sections:[["🦖 Dinosaurs","dino"],["🐾 Animals+","animalsPlus"],["✂️ Dino Crafts","crafts"],["🚀 Imagination","imagine"],["🎮 Games","games"]]},
+  {cls:"world7",emoji:"🚀",title:"Space Adventure",desc:"Solar system, all planets, rockets, moon, stars, astronauts, and space stories.",sections:[["☀️ Solar System","solarSystem"],["🪐 Space","space"],["✂️ Rocket Craft","crafts"],["📚 Space Story","interactiveStory"],["🎓 Space Quiz","bigQuiz"]]},
+  {cls:"world8",emoji:"🎨",title:"Art Studio",desc:"Coloring, drawing, crafts, stickers, creativity, and imagination missions.",sections:[["🎨 Coloring","coloring"],["🍎 Draw Fruits","fruits"],["🥦 Draw Veggies","vegetables"],["✂️ Crafts","crafts"],["🚀 Imagine","imagine"],["🧒 Avatar Stickers","avatar"]]},
+  {cls:"world9",emoji:"🎵",title:"Music World",desc:"Songs, rhythm, clapping patterns, dance breaks, jokes, and movement.",sections:[["🎶 Music Fun","musicFun"],["😂 Jokes","jokes"],["💃 Movement","games"],["🎭 Roleplay","roleplay"],["🌙 Calm Breathing","stories"]]},
+  {cls:"world10",emoji:"🤖",title:"Coding City",desc:"Sequences, loops, bugs, debugging, algorithms, robot steps, and coding games.",sections:[["🤖 Coding","coding"],["🧠 Brain Boosters","brain"],["🎮 Games","games"],["✂️ Robot Craft","crafts"],["🏆 Coding Quiz","bigQuiz"]]},
+  {cls:"world11",emoji:"🏴‍☠️",title:"Pirate Treasure Island",desc:"Treasure hunts, mystery chests, maps, rewards, memory games, and quests.",sections:[["🪙 Treasure Hunt","treasure"],["🎁 Mystery Chest","chest"],["🧠 Memory","memory"],["🗺️ Daily Quests","daily"],["🎮 Games","games"]]},
+  {cls:"world12",emoji:"🧙",title:"Magic Castle",desc:"Manners, etiquette, dining, kindness, emotions, pretend play, and life skills.",sections:[["🙏 Manners","manners"],["🌟 Etiquette","etiquette"],["🍽️ Dining","dining"],["🌟 Life Skills","lifeSkills"],["🎭 Pretend Play","pretend"],["🛡️ Safety","safety"]]}
+];
+
+function renderKidWorlds(){
+  const grid=document.getElementById("kidWorldGrid");
+  if(!grid) return;
+  grid.innerHTML="";
+  learningWorlds.forEach((w,i)=>{
+    const card=document.createElement("div");
+    card.className=`kidWorld ${w.cls}`;
+    card.innerHTML=`<div class="kidWorldEmoji">${w.emoji}</div><h3>${w.title}</h3><p>${w.desc}</p><button>Enter World</button>`;
+    card.onclick=()=>openWorld(i);
+    grid.appendChild(card);
+  });
+}
+function openWorld(i){
+  const w=learningWorlds[i];
+  document.getElementById("worldModalEmoji").textContent=w.emoji;
+  document.getElementById("worldModalTitle").textContent=w.title;
+  document.getElementById("worldModalDesc").textContent=w.desc;
+  document.getElementById("worldModalHint").textContent="Choose an activity in " + w.title + ".";
+  const box=document.getElementById("worldLessonButtons");
+  box.innerHTML="";
+  w.sections.forEach(([label,id])=>{
+    const b=document.createElement("button");
+    b.className="gold";
+    b.textContent=label;
+    b.onclick=()=>{closeWorld();show(id);};
+    box.appendChild(b);
+  });
+  document.getElementById("worldModal").classList.add("show");
+  speak(`Welcome to ${w.title}. ${w.desc}`);
+}
+function closeWorld(){
+  const m=document.getElementById("worldModal");
+  if(m) m.classList.remove("show");
+}
+function toggleFullMenu(){
+  const m=document.getElementById("oldMenu");
+  if(!m) return;
+  m.classList.toggle("hiddenLongMenu");
+  speak(m.classList.contains("hiddenLongMenu") ? "Full menu hidden." : "Full menu shown.");
+}
+
+
+/* Fruits and vegetables learning */
+const fruitsData=[
+  ["Apple","🍎","Apple has fiber. Fiber helps your tummy and digestion."],
+  ["Banana","🍌","Banana gives energy and has potassium, which helps muscles."],
+  ["Orange","🍊","Orange has vitamin C, which helps your body stay strong."],
+  ["Strawberry","🍓","Strawberries have vitamin C and antioxidants that help protect your body."],
+  ["Blueberries","🫐","Blueberries have antioxidants that help your brain and body."],
+  ["Watermelon","🍉","Watermelon has lots of water and helps keep you hydrated."],
+  ["Grapes","🍇","Grapes give quick energy and have helpful plant nutrients."],
+  ["Mango","🥭","Mango has vitamin A, which helps eyes and skin."],
+  ["Pineapple","🍍","Pineapple has vitamin C and helps your body use food."],
+  ["Avocado","🥑","Avocado has healthy fats that help the brain and body grow."],
+  ["Pear","🍐","Pear has fiber that helps your tummy feel good."],
+  ["Peach","🍑","Peach has vitamins and water to help your body."],
+  ["Cherry","🍒","Cherries have antioxidants and can be a fun fruit snack."],
+  ["Kiwi","🥝","Kiwi has lots of vitamin C and helps your immune system."],
+  ["Papaya","🟠","Papaya has vitamins and helps your tummy digest food."],
+  ["Pomegranate","🔴","Pomegranate has antioxidants that help protect your body."],
+  ["Cantaloupe","🍈","Cantaloupe has vitamin A and water for eyes and hydration."],
+  ["Lemon","🍋","Lemon has vitamin C and gives a bright sour taste."],
+  ["Coconut","🥥","Coconut has water and healthy fats."],
+  ["Fig","🟣","Figs have fiber and minerals that help the body."]
+];
+
+const vegetablesData=[
+  ["Broccoli","🥦","Broccoli has vitamins and fiber. It helps your body grow strong."],
+  ["Carrot","🥕","Carrot has vitamin A, which helps your eyes."],
+  ["Spinach","🥬","Spinach has iron and vitamins that help blood and muscles."],
+  ["Tomato","🍅","Tomato has vitamin C and lycopene, which helps protect the body."],
+  ["Corn","🌽","Corn gives energy and has fiber for your tummy."],
+  ["Potato","🥔","Potato gives energy for playing and learning."],
+  ["Sweet Potato","🍠","Sweet potato has vitamin A and energy for the body."],
+  ["Cucumber","🥒","Cucumber has lots of water and helps hydration."],
+  ["Peas","🟢","Peas have protein and fiber to help your body grow."],
+  ["Bell Pepper","🫑","Bell pepper has vitamin C and bright colors that help your body."],
+  ["Mushroom","🍄","Mushrooms have nutrients that help your body."],
+  ["Onion","🧅","Onion adds flavor and has helpful plant nutrients."],
+  ["Garlic","🧄","Garlic adds flavor and has helpful plant nutrients."],
+  ["Lettuce","🥬","Lettuce has water and helps make meals crunchy."],
+  ["Pumpkin","🎃","Pumpkin has vitamin A, which helps eyes and skin."],
+  ["Cauliflower","⚪","Cauliflower has fiber and vitamins."],
+  ["Cabbage","🥬","Cabbage has fiber and vitamin C."],
+  ["Beetroot","🟣","Beetroot has nutrients that help blood and energy."],
+  ["Okra","🟢","Okra has fiber that helps digestion."],
+  ["Green Beans","🫛","Green beans have fiber and vitamins for growing bodies."]
+];
+
+function initFruitsVegetables(){
+  const fg=document.getElementById("fruitGrid");
+  if(fg && !fg.children.length){
+    fruitsData.forEach(([name,emoji,help])=>{
+      fg.appendChild(card(`<div class="emoji">${emoji}</div><div>${name}</div><div class="word">${help}</div>`,
+        `${name}. ${help}`));
+    });
+  }
+  const vg=document.getElementById("vegetableGrid");
+  if(vg && !vg.children.length){
+    vegetablesData.forEach(([name,emoji,help])=>{
+      vg.appendChild(card(`<div class="emoji">${emoji}</div><div>${name}</div><div class="word">${help}</div>`,
+        `${name}. ${help}`));
+    });
+  }
+}
+
+function randomFruitFact(){
+  const f=fruitsData[Math.floor(Math.random()*fruitsData.length)];
+  speak(`${f[0]}. ${f[2]}`);
+}
+function randomVegetableFact(){
+  const v=vegetablesData[Math.floor(Math.random()*vegetablesData.length)];
+  speak(`${v[0]}. ${v[2]}`);
+}
+function fruitQuiz(){
+  const f=fruitsData[Math.floor(Math.random()*fruitsData.length)];
+  const ans=f[0];
+  let opts=[ans];
+  while(opts.length<4){
+    const x=fruitsData[Math.floor(Math.random()*fruitsData.length)][0];
+    if(!opts.includes(x)) opts.push(x);
+  }
+  document.getElementById("fruitQ").textContent=`Which fruit is ${f[1]}?`;
+  document.getElementById("fruitFb").textContent="";
+  speak(`Which fruit is this? ${f[0]}.`);
+  options("fruitOptions",opts.map(x=>({label:x,value:x})),ans,()=>{
+    document.getElementById("fruitFb").textContent="🎉 Fruit expert!";
+    addScore(10,`${ans}. ${f[2]} Ten points!`);
+    setTimeout(fruitQuiz,900);
+  },()=>{
+    document.getElementById("fruitFb").textContent="Try again 😊";
+    speak("Try again. Look at the fruit picture.");
+  });
+}
+function vegetableQuiz(){
+  const v=vegetablesData[Math.floor(Math.random()*vegetablesData.length)];
+  const ans=v[0];
+  let opts=[ans];
+  while(opts.length<4){
+    const x=vegetablesData[Math.floor(Math.random()*vegetablesData.length)][0];
+    if(!opts.includes(x)) opts.push(x);
+  }
+  document.getElementById("vegetableQ").textContent=`Which vegetable is ${v[1]}?`;
+  document.getElementById("vegetableFb").textContent="";
+  speak(`Which vegetable is this? ${v[0]}.`);
+  options("vegetableOptions",opts.map(x=>({label:x,value:x})),ans,()=>{
+    document.getElementById("vegetableFb").textContent="🎉 Vegetable expert!";
+    addScore(10,`${ans}. ${v[2]} Ten points!`);
+    setTimeout(vegetableQuiz,900);
+  },()=>{
+    document.getElementById("vegetableFb").textContent="Try again 😊";
+    speak("Try again. Look at the vegetable picture.");
+  });
+}
+
 function initAll(){
+  initFruitsVegetables();
+  renderKidWorlds();
+  initExpandedLearning();
   initStore();initLetters();initWords();initReading();initMath();initPatterns();initManners();initEtiquette();initDining();initJokes();initImagine();fill("scienceGrid",science);fill("safetyGrid",safety);fill("geoGrid",geo);fill("spaceGrid",space);fill("dinoGrid",dino);fill("codingGrid",coding);codingQuiz();initStories();initPaint();
   traceCtx=setupCanvas(document.getElementById("canvas"),()=>"#d6336c");paintCtx=setupCanvas(document.getElementById("paintCanvas"),()=>paintColor);
   renderStats();

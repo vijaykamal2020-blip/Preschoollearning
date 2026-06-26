@@ -280,6 +280,15 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   font-weight:900;
 }
 
+
+/* Crafts and deeper interactivity */
+.craftCard{background:linear-gradient(135deg,#fff,#fff0f6);border:4px solid #f783ac;border-radius:26px;padding:14px;color:#263238;font-weight:900;box-shadow:0 7px 0 #faa2c1}
+.petActionGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px}
+.petMeter{height:24px;background:#e9ecef;border-radius:999px;overflow:hidden;border:3px solid #fff;margin:6px 0 12px}
+.petMeterFill{height:100%;background:linear-gradient(90deg,#51cf66,#ffd43b);width:50%}
+.roomScene{min-height:230px;border-radius:30px;border:5px solid #fff;background:linear-gradient(#d0ebff,#fff3bf);display:flex;align-items:center;justify-content:center;flex-direction:column;box-shadow:inset 0 -35px 0 rgba(81,207,102,.25)}
+.roomDecor{font-size:34px;min-height:42px}.bigPet{font-size:110px;animation:bounce 1.7s infinite ease-in-out}
+.stepList{text-align:left;line-height:1.45;font-size:18px}.experimentBox{background:#f8f9fa;border:4px solid #74c0fc;border-radius:26px;padding:14px;color:#263238;font-weight:900}
 </style>
 </head>
 <body>
@@ -338,6 +347,8 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <button class="tab" onclick="show('jokes')">😂 Jokes</button>
   <button class="tab" onclick="show('imagine')">🚀 Imagine</button>
   <button class="tab" onclick="show('coloring')">🎨 Coloring</button>
+  <button class="tab" onclick="show('crafts')">✂️ Crafts</button>
+  <button class="tab" onclick="show('experiments')">🧪 Experiments</button>
   <button class="tab" onclick="show('geo')">🌍 World</button>
   <button class="tab" onclick="show('space')">🪐 Space</button>
   <button class="tab" onclick="show('dino')">🦖 Dinos</button>
@@ -460,16 +471,37 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
     <div class="stat">Manners Practice<br><span id="mannersStat">0</span></div>
     <div class="stat">Imagination Practice<br><span id="imagineStat">0</span></div>
     <div class="stat">Stories Read<br><span id="storyStat">0</span></div>
+    <div class="stat">Crafts Done<br><span id="craftStat">0</span></div>
+    <div class="stat">Experiments<br><span id="experimentStat">0</span></div>
     <div class="stat">Badges<br><span id="badges">None yet</span></div>
   </div>
   <div class="hint">Suggested 25-minute day: 7 min reading, 7 min math, 4 min writing, 3 min manners, 3 min imagination, 1 joke, 1 bedtime story.</div>
 </section>
 
 <section id="pet" class="section">
-  <h2>Virtual Pet Reward Room</h2>
-  <div class="hint">Earn coins from quizzes. Feed your pet and buy fun looks.</div>
+  <h2>Interactive Puppy and Pet Care Room</h2>
+  <div class="hint">Care for your puppy/pet. Feed, wash, play, sleep, train tricks, and decorate the room. Caring teaches responsibility.</div>
   <div class="petBox">
-    <div class="pet"><div class="petEmoji" id="petEmoji">🐶</div><h2 id="petName">Buddy</h2><p id="petMsg">I grow when you learn!</p><button class="gold" onclick="feedPet()">🪙 Feed 5 Coins</button></div>
+    <div class="pet">
+      <div class="roomScene" id="petRoomScene">
+        <div class="roomDecor" id="roomDecor">🧸 🪴 🏀</div>
+        <div class="bigPet" id="petEmoji">🐶</div>
+      </div>
+      <h2 id="petName">Buddy</h2>
+      <p id="petMsg">I grow when you learn!</p>
+      <div>Hunger</div><div class="petMeter"><div class="petMeterFill" id="hungerBar"></div></div>
+      <div>Happiness</div><div class="petMeter"><div class="petMeterFill" id="happyBar"></div></div>
+      <div>Clean</div><div class="petMeter"><div class="petMeterFill" id="cleanBar"></div></div>
+      <div>Energy</div><div class="petMeter"><div class="petMeterFill" id="energyBar"></div></div>
+      <div class="petActionGrid">
+        <button class="gold" onclick="feedPet()">🍎 Feed</button>
+        <button class="bluebtn" onclick="washPet()">🛁 Wash</button>
+        <button class="greenbtn" onclick="playPet()">🎾 Play</button>
+        <button class="white" onclick="sleepPet()">😴 Sleep</button>
+        <button class="pinkbtn" onclick="trainPet()">🐾 Trick</button>
+        <button class="gold" onclick="decorateRoom()">🏠 Decorate</button>
+      </div>
+    </div>
     <div class="pet"><h2>Pet Store</h2><div class="grid" id="storeGrid"></div></div>
   </div>
 </section>
@@ -484,6 +516,31 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
 <section id="dining" class="section"><h2>Dining Etiquette</h2><div class="hint">Polite table manners: sitting, chewing, asking, cleaning, thanking.</div><div class="grid" id="diningGrid"></div><div class="quiz"><div class="question" id="diningQ"></div><div class="options" id="diningOptions"></div><div class="feedback" id="diningFb"></div></div></section>
 <section id="jokes" class="section"><h2>Kid-Friendly Jokes</h2><div class="hint">Tap a joke or use random joke. Great for language and confidence.</div><div class="row"><button class="gold" onclick="randomJoke()">😂 Tell Me a Joke</button></div><div class="grid" id="jokeGrid"></div></section>
 <section id="imagine" class="section"><h2>Imagination Builder</h2><div class="hint">Creative prompts to build storytelling, pretend play, vocabulary, and confidence.</div><div class="row"><button class="gold" onclick="newImagine()">🚀 New Mission</button><button class="white" onclick="speakCurrentImagine()">🔊 Read Mission</button><button class="greenbtn" onclick="completeImagine()">⭐ I Imagined It</button></div><div class="imaginationBox" id="imagineBox">Tap “New Mission.”</div><div class="grid" id="imagineGrid" style="margin-top:14px"></div></section>
+
+
+<section id="crafts" class="section">
+  <h2>Craft Studio</h2>
+  <div class="hint">Kid-safe craft ideas for ages 5–7. Parent help recommended for scissors, glue, and small items. Tap a craft to hear materials and steps.</div>
+  <div class="row">
+    <button class="gold" onclick="randomCraft()">🎲 Random Craft</button>
+    <button class="white" onclick="readCurrentCraft()">🔊 Read Steps</button>
+    <button class="greenbtn" onclick="completeCraft()">⭐ I Made It</button>
+  </div>
+  <div class="story" id="craftBox"><div class="story-title">Pick a craft ✂️</div><div>Choose a craft card below.</div></div>
+  <div class="grid" id="craftGrid"></div>
+</section>
+
+<section id="experiments" class="section">
+  <h2>Simple Science Experiments</h2>
+  <div class="hint">Easy learning activities with parent supervision. Tap to hear what to observe and learn.</div>
+  <div class="row">
+    <button class="gold" onclick="randomExperiment()">🧪 Random Experiment</button>
+    <button class="white" onclick="readCurrentExperiment()">🔊 Read Experiment</button>
+    <button class="greenbtn" onclick="completeExperiment()">⭐ I Tried It</button>
+  </div>
+  <div class="experimentBox" id="experimentBox">Pick an experiment below.</div>
+  <div class="grid" id="experimentGrid"></div>
+</section>
 
 <section id="coloring" class="section">
   <h2>Drawing and Coloring Page</h2>
@@ -706,7 +763,7 @@ function dailyPractice(){speak("Daily plan. Seven minutes reading. Seven minutes
 function movementBreak(){const moves=["Jump like a frog five times.","Flap like a bird and count to ten.","March like a robot around the room.","Stretch tall like a giraffe.","Dance freeze. Dance, dance, freeze!","Take three calm balloon breaths."];let m=moves[Math.floor(Math.random()*moves.length)];speak("Movement break! "+m);state.coins+=2;save();renderStats()}
 function toggleBedtime(){document.body.classList.toggle("bedtime");show("stories");speak("Bedtime mode. Let us slow down, read a gentle story, and get ready for sleep.",true)}
 function show(id){document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");if(id==="certificate")renderCertificate();speak("Now practice " + document.querySelector("#"+id+" h2").textContent + ".")}
-function renderStats(){let level=Math.floor(state.score/100)+1;document.getElementById("stars").textContent=state.stars;document.getElementById("coins").textContent=state.coins;document.getElementById("score").textContent=state.score;document.getElementById("correct").textContent=state.correct;document.getElementById("level").textContent=level;document.getElementById("streak").textContent=state.streak;["reading","math","manners","imagine","stories"].forEach(k=>{let el=document.getElementById(k==="stories"?"storyStat":k+"Stat");if(el)el.textContent=state[k]});let b=[];if(state.reading>=5)b.push("Reader");if(state.math>=5)b.push("Math Star");if(state.manners>=5)b.push("Manners Hero");if(state.imagine>=3)b.push("Creator");if(state.stories>=3)b.push("Story Dreamer");if(state.correct>=20)b.push("Super Kid");let be=document.getElementById("badges");if(be)be.textContent=b.length?b.join(", "):"None yet";renderPet();renderWorldMap();renderAvatar();renderDailyQuests()}
+function renderStats(){let level=Math.floor(state.score/100)+1;document.getElementById("stars").textContent=state.stars;document.getElementById("coins").textContent=state.coins;document.getElementById("score").textContent=state.score;document.getElementById("correct").textContent=state.correct;document.getElementById("level").textContent=level;document.getElementById("streak").textContent=state.streak;["reading","math","manners","imagine","stories"].forEach(k=>{let el=document.getElementById(k==="stories"?"storyStat":k+"Stat");if(el)el.textContent=state[k]}); let ce=document.getElementById("craftStat"); if(ce) ce.textContent=state.craftsDone||0; let ee=document.getElementById("experimentStat"); if(ee) ee.textContent=state.experimentsDone||0;let b=[];if(state.reading>=5)b.push("Reader");if(state.math>=5)b.push("Math Star");if(state.manners>=5)b.push("Manners Hero");if(state.imagine>=3)b.push("Creator");if(state.stories>=3)b.push("Story Dreamer");if(state.correct>=20)b.push("Super Kid");let be=document.getElementById("badges");if(be)be.textContent=b.length?b.join(", "):"None yet";renderPet();renderWorldMap();renderAvatar();renderDailyQuests()}
 function addScore(points,msg,cat){state.score+=points;state.correct++;state.stars++;state.coins+=Math.ceil(points/5);if(cat)state[cat]=(state[cat]||0)+1;save();renderStats();confetti();speak(msg||`Great job. You earned ${points} points!`)}
 function star(msg,cat){state.stars++;state.coins+=1;if(cat)state[cat]=(state[cat]||0)+1;save();renderStats();confetti();speak(msg||"Great job!")}
 function resetAll(){state={stars:0,coins:0,score:0,correct:0,reading:0,math:0,manners:0,imagine:0,stories:0,pet:"🐶",petName:"Buddy",petLevel:1,music:false,lastDate:"",streak:1};save();renderStats();speak("All rewards reset. Let us practice again.")}
@@ -716,8 +773,8 @@ function options(id,opts,ans,good,bad){let box=document.getElementById(id);box.i
 function fill(id,arr){let g=document.getElementById(id);arr.forEach(([n,e,t])=>g.appendChild(card(`<div class="emoji">${e}</div><div>${n}</div><div class="word">${t}</div>`,`${n}. ${t}`)))}
 
 function initStore(){const pets=["🐶","🐱","🐰","🦊","🐼","🦁","🦄","🐢"];let g=document.getElementById("storeGrid");g.innerHTML="";pets.forEach(p=>{let d=card(`<div class="emoji">${p}</div><div>Choose Pet</div><div class="word">10 coins</div>`,`This pet is ${p}. Use ten coins to choose it.`);d.classList.add("storeItem");if(state.pet===p)d.classList.add("selected");d.onclick=()=>{if(state.coins>=10||state.pet===p){if(state.pet!==p)state.coins-=10;state.pet=p;save();renderStats();initStore();speak("Pet selected!")}else speak("You need ten coins for this pet. Try a quiz to earn coins.")};g.appendChild(d)})}
-function renderPet(){let pe=document.getElementById("petEmoji");if(!pe)return;pe.textContent=state.pet;document.getElementById("petName").textContent=state.petName;document.getElementById("petMsg").textContent=`Level ${state.petLevel}. I grow when you learn!`}
-function feedPet(){if(state.coins>=5){state.coins-=5;state.petLevel++;save();renderStats();confetti();speak("Yum! Your pet is happy and growing!")}else speak("You need five coins to feed your pet. Try a quiz first.")}
+function renderPet(){let pe=document.getElementById("petEmoji");if(!pe)return;pe.textContent=state.pet;document.getElementById("petName").textContent=state.petName;document.getElementById("petMsg").textContent=`Level ${state.petLevel}. I grow when you learn!`; if(typeof updatePetMeters==="function") updatePetMeters();}
+function feedPet(){if(state.coins>=5){state.coins-=5;state.petLevel++;changePetStats(30,10,-2,5);save();renderStats();confetti();speak("Yum! Your pet ate a healthy snack. Feeding teaches care and responsibility!")}else speak("You need five coins to feed your pet. Try a quiz first.")}
 function playTone(freq, duration=0.18, when=0){
   if(!musicCtx) return;
   const osc = musicCtx.createOscillator();
@@ -1429,6 +1486,56 @@ function newPrintable(){
   speak("Printable practice idea. " + p);
 }
 
+
+/* Crafts, experiments, and richer pet care */
+state={hunger:55,happiness:55,clean:60,energy:60,decor:["🧸","🪴","🏀"],craftsDone:0,experimentsDone:0,...state};
+
+const crafts=[
+{title:"Paper Plate Lion",emoji:"🦁",materials:["paper plate","yellow/orange crayons","glue","paper strips","marker"],steps:["Color the plate yellow.","Glue paper strips around the edge for a mane.","Draw eyes, nose, and smile.","Roar like a lion and say one lion fact."],learn:"Fine motor skills, animal vocabulary, and creativity."},
+{title:"Rainbow Name Craft",emoji:"🌈",materials:["paper","crayons","cotton balls","glue"],steps:["Write your name big.","Trace each letter with a different color.","Glue cotton clouds on both sides.","Say each letter in your name."],learn:"Name recognition, letter formation, and colors."},
+{title:"Shape Robot",emoji:"🤖",materials:["colored paper","scissors with parent help","glue","marker"],steps:["Cut circles, squares, rectangles, and triangles.","Build a robot body with shapes.","Count how many shapes you used.","Give your robot a name."],learn:"Shapes, counting, and design thinking."},
+{title:"Dinosaur Footprint",emoji:"🦖",materials:["paper","green paint or crayon","toy dino or handprint","marker"],steps:["Make a big dinosaur footprint.","Add claws with marker.","Measure it with blocks.","Pretend to be a paleontologist."],learn:"Measurement, science words, and pretend play."},
+{title:"Weather Wheel",emoji:"🌦️",materials:["paper plate","paper arrow","crayons","brad fastener or tape"],steps:["Divide the plate into sunny, rainy, cloudy, snowy.","Draw each weather picture.","Add an arrow in the middle.","Point to today’s weather."],learn:"Weather vocabulary and observation."},
+{title:"Kindness Crown",emoji:"👑",materials:["paper strip","stickers","crayons","tape"],steps:["Decorate a paper crown.","Write or draw kind words: please, thank you, sorry.","Wear it and do one kind action."],learn:"Social emotional learning and manners."},
+{title:"Counting Caterpillar",emoji:"🐛",materials:["paper circles","glue","marker"],steps:["Make 10 paper circles.","Number them 1 to 10.","Glue them in order.","Count forward and backward."],learn:"Number order and counting."},
+{title:"Space Rocket",emoji:"🚀",materials:["paper tube","paper triangle","crayons","tape"],steps:["Decorate a tube as a rocket.","Add a triangle nose.","Add fire at the bottom.","Count down from 10 and blast off."],learn:"Sequencing, counting, and space vocabulary."},
+{title:"Story Puppet",emoji:"🎭",materials:["paper bag or sock","paper","glue","marker"],steps:["Make a face on the bag or sock.","Add hair, ears, or hat.","Give it a name.","Use it to tell a tiny story."],learn:"Storytelling, language, and confidence."},
+{title:"Map of My Room",emoji:"🗺️",materials:["paper","crayons"],steps:["Draw your bed, door, window, and toys.","Add arrows showing how to walk.","Use words: near, far, left, right."],learn:"Spatial awareness and early geography."},
+{title:"Alphabet Collage",emoji:"🔤",materials:["old magazine","paper","glue","parent scissors"],steps:["Pick one letter.","Find pictures that start with that sound.","Glue them on paper.","Say each word slowly."],learn:"Beginning sounds and vocabulary."},
+{title:"Gratitude Flower",emoji:"🌸",materials:["paper","crayons","glue"],steps:["Draw a flower.","On each petal draw someone or something you are thankful for.","Say thank you to one person."],learn:"Emotional growth and kindness."}
+];
+let currentCraft=null;
+function initCrafts(){const g=document.getElementById("craftGrid");if(!g||g.children.length)return;crafts.forEach((c,i)=>{const d=card(`<div class="emoji">${c.emoji}</div><div>${c.title}</div><div class="word">${c.learn}</div>`,`Craft. ${c.title}. ${c.learn}`);d.onclick=()=>selectCraft(i);g.appendChild(d);});}
+function selectCraft(i){currentCraft=crafts[i];document.getElementById("craftBox").innerHTML=`<div class="story-title">${currentCraft.emoji} ${currentCraft.title}</div><b>Materials:</b> ${currentCraft.materials.join(", ")}<br><br><b>Steps:</b><ol class="stepList">${currentCraft.steps.map(s=>"<li>"+s+"</li>").join("")}</ol><b>Learning:</b> ${currentCraft.learn}`;speak(`Craft selected. ${currentCraft.title}. Materials are ${currentCraft.materials.join(", ")}. ${currentCraft.learn}`);}
+function randomCraft(){selectCraft(Math.floor(Math.random()*crafts.length));}
+function readCurrentCraft(){if(!currentCraft){speak("Pick a craft first.");return;}speak(`${currentCraft.title}. Materials: ${currentCraft.materials.join(", ")}. Steps. ${currentCraft.steps.join(". ")}. Learning goal: ${currentCraft.learn}`);}
+function completeCraft(){if(!currentCraft){speak("Pick a craft first.");return;}state.craftsDone=(state.craftsDone||0)+1;addScore(25,`Amazing craft! You completed ${currentCraft.title}. Twenty five points and creativity coins!`,"imagine");}
+
+const experiments=[
+{title:"Sink or Float",emoji:"🛟",materials:["bowl of water","spoon","leaf","small toy","coin with parent help"],steps:["Predict: will it sink or float?","Place one item in water.","Watch carefully.","Sort items into sink and float groups."],learn:"Prediction, observation, sorting, and science words."},
+{title:"Magnet Hunt",emoji:"🧲",materials:["magnet","safe household objects"],steps:["Predict if an object will stick.","Touch magnet to object.","Make two groups: magnetic and not magnetic.","Count each group."],learn:"Magnets, materials, prediction, and counting."},
+{title:"Rainbow Water",emoji:"🌈",materials:["cups","water","food color with parent help"],steps:["Add water to cups.","Add different colors.","Mix two colors and observe.","Name the new color."],learn:"Color mixing and observation."},
+{title:"Plant Sprout Watch",emoji:"🌱",materials:["bean seed","wet paper towel","zip bag","sunny window"],steps:["Place bean in wet towel.","Put it near light.","Check daily.","Draw what changed."],learn:"Plant life cycles and daily observation."},
+{title:"Shadow Play",emoji:"🔦",materials:["flashlight","toy","wall"],steps:["Shine light on a toy.","Move it close and far.","Watch shadow size change.","Make shadow shapes."],learn:"Light, shadow, near, far, big, and small."},
+{title:"Sound Shakers",emoji:"🎵",materials:["containers","rice or beans","tape with parent help"],steps:["Fill containers with different amounts.","Shake gently.","Compare loud and soft sounds.","Make a rhythm."],learn:"Sound, rhythm, comparison, and listening."},
+{title:"Ice Melt Race",emoji:"🧊",materials:["ice cubes","plate","warm spot","cool spot"],steps:["Place ice in two places.","Predict which melts first.","Watch and compare.","Talk about hot and cold."],learn:"Temperature, melting, and comparison."},
+{title:"Build a Bridge",emoji:"🌉",materials:["blocks","paper","toy cars"],steps:["Build two towers.","Put paper across as a bridge.","Test if a toy can cross.","Make it stronger."],learn:"Engineering, balance, and problem solving."}
+];
+let currentExperiment=null;
+function initExperiments(){const g=document.getElementById("experimentGrid");if(!g||g.children.length)return;experiments.forEach((e,i)=>{const d=card(`<div class="emoji">${e.emoji}</div><div>${e.title}</div><div class="word">${e.learn}</div>`,`Experiment. ${e.title}. ${e.learn}`);d.onclick=()=>selectExperiment(i);g.appendChild(d);});}
+function selectExperiment(i){currentExperiment=experiments[i];document.getElementById("experimentBox").innerHTML=`<div class="story-title">${currentExperiment.emoji} ${currentExperiment.title}</div><b>Materials:</b> ${currentExperiment.materials.join(", ")}<br><br><b>Steps:</b><ol class="stepList">${currentExperiment.steps.map(s=>"<li>"+s+"</li>").join("")}</ol><b>Learn:</b> ${currentExperiment.learn}`;speak(`Experiment selected. ${currentExperiment.title}. ${currentExperiment.learn}`);}
+function randomExperiment(){selectExperiment(Math.floor(Math.random()*experiments.length));}
+function readCurrentExperiment(){if(!currentExperiment){speak("Pick an experiment first.");return;}speak(`${currentExperiment.title}. Materials: ${currentExperiment.materials.join(", ")}. Steps. ${currentExperiment.steps.join(". ")}. What we learn: ${currentExperiment.learn}`);}
+function completeExperiment(){if(!currentExperiment){speak("Pick an experiment first.");return;}state.experimentsDone=(state.experimentsDone||0)+1;addScore(25,`Great scientist! You tried ${currentExperiment.title}. Twenty five points!`);}
+
+function updatePetMeters(){const set=(id,val)=>{const el=document.getElementById(id);if(el)el.style.width=Math.max(0,Math.min(100,val))+"%";};set("hungerBar",state.hunger||50);set("happyBar",state.happiness||50);set("cleanBar",state.clean||50);set("energyBar",state.energy||50);const decor=document.getElementById("roomDecor");if(decor)decor.textContent=(state.decor||["🧸","🪴","🏀"]).join(" ");}
+function changePetStats(h,hap,c,e){state.hunger=Math.max(0,Math.min(100,(state.hunger||50)+h));state.happiness=Math.max(0,Math.min(100,(state.happiness||50)+hap));state.clean=Math.max(0,Math.min(100,(state.clean||50)+c));state.energy=Math.max(0,Math.min(100,(state.energy||50)+e));save();renderStats();updatePetMeters();}
+function washPet(){changePetStats(-2,8,35,-3);speak("Splish splash! Your pet is clean. Washing teaches hygiene.");}
+function playPet(){changePetStats(-8,25,-6,-12);speak("Play time! Your pet is happy. Playing is exercise and friendship.");}
+function sleepPet(){changePetStats(-4,5,0,35);speak("Your pet is resting. Sleep gives energy for learning.");}
+function trainPet(){const tricks=["sit","spin","high five","roll over","dance","fetch"];const trick=tricks[Math.floor(Math.random()*tricks.length)];changePetStats(-5,15,-2,-8);addScore(10,`Your pet learned ${trick}! Training teaches patience and practice.`);}
+function decorateRoom(){const decors=["🧸","🪴","🏀","🛏️","🖼️","🎈","⭐","🌈","🚀","🦴","🎁","🏆"];if((state.coins||0)<3){speak("You need three coins to decorate the pet room.");return;}state.coins-=3;state.decor=state.decor||[];state.decor.push(decors[Math.floor(Math.random()*decors.length)]);if(state.decor.length>6)state.decor.shift();save();renderStats();updatePetMeters();confetti();speak("Room decorated! Your pet room looks more fun.");}
+
 function initAll(){
   initStore();initLetters();initWords();initReading();initMath();initPatterns();initManners();initEtiquette();initDining();initJokes();initImagine();fill("scienceGrid",science);fill("safetyGrid",safety);fill("geoGrid",geo);fill("spaceGrid",space);fill("dinoGrid",dino);fill("codingGrid",coding);codingQuiz();initStories();initPaint();
   traceCtx=setupCanvas(document.getElementById("canvas"),()=>"#d6336c");paintCtx=setupCanvas(document.getElementById("paintCanvas"),()=>paintColor);
@@ -1439,6 +1546,8 @@ function initAll(){
   renderAvatar();
   renderDailyQuests();
   initPretend();
+  initCrafts();
+  initExperiments();
   newPrintable();
   initLifeSkills();
   initMusicFun();

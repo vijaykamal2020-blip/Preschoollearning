@@ -90,6 +90,79 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}.confetti span{position:absolute;font-size:28px;animation:fall 1.4s linear forwards}
 @keyframes fall{from{transform:translateY(-40px) rotate(0deg);opacity:1}to{transform:translateY(110vh) rotate(360deg);opacity:0}}
 @media(max-width:760px){.hero,.tracearea{grid-template-columns:1fr;text-align:center}.grid{grid-template-columns:repeat(auto-fit,minmax(98px,1fr))}.card{min-height:106px}.tabs{grid-template-columns:repeat(2,1fr)}}
+
+/* Premium app polish */
+.lessonWorld {
+  background: linear-gradient(135deg,#ffffff,#f8f9ff);
+  border: 4px solid #fff;
+  border-radius: 28px;
+  padding: 16px;
+  box-shadow: 0 8px 0 rgba(0,0,0,.12), 0 14px 24px rgba(0,0,0,.10);
+}
+.badgePill {
+  display:inline-block;
+  background:#fff3bf;
+  color:#5c3d00;
+  border:3px solid #ffd43b;
+  border-radius:999px;
+  padding:8px 12px;
+  margin:4px;
+  font-weight:900;
+}
+.xoxoBoard {
+  display:grid;
+  grid-template-columns:repeat(3, minmax(80px, 130px));
+  gap:10px;
+  justify-content:center;
+  margin:16px auto;
+}
+.xoxoCell {
+  height:100px;
+  border-radius:24px;
+  background:#fff;
+  border:5px solid #74c0fc;
+  font-size:52px;
+  box-shadow:0 7px 0 #a5d8ff;
+}
+.challengeCard {
+  background: linear-gradient(135deg,#fff,#fff9db);
+  border:4px solid #ffd43b;
+  border-radius:26px;
+  padding:14px;
+  font-size:20px;
+  font-weight:900;
+  color:#263238;
+  box-shadow:0 7px 0 #ffe066;
+}
+.lessonPath {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+}
+.lessonNode {
+  background:#fff;
+  border:4px solid #d0ebff;
+  border-radius:28px;
+  padding:16px;
+  text-align:center;
+  font-weight:900;
+  color:#263238;
+  box-shadow:0 7px 0 #a5d8ff;
+}
+.lessonNode .emoji { font-size:56px; }
+.lessonNode.locked { opacity:.65; filter:grayscale(.25); }
+.appRibbon {
+  background:linear-gradient(90deg,#ffdeeb,#e7f5ff,#ebfbee);
+  border:4px solid white;
+  border-radius:26px;
+  padding:12px;
+  margin:12px 0;
+  font-weight:900;
+  text-align:center;
+  color:#263238;
+}
+@media(max-width:760px){.xoxoCell{height:82px;font-size:44px}.xoxoBoard{grid-template-columns:repeat(3, minmax(70px, 95px));}}
+
 </style>
 </head>
 <body>
@@ -155,6 +228,11 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <button class="tab" onclick="show('certificate')">🥇 Certificate</button>
   <button class="tab" onclick="show('quizzone')">🏆 Quiz</button>
   <button class="tab" onclick="show('games')">🎮 Games</button>
+  <button class="tab" onclick="show('xoxo')">❌⭕ XOXO</button>
+  <button class="tab" onclick="show('quests')">🗺️ Quests</button>
+  <button class="tab" onclick="show('brain')">🧠 Brain</button>
+  <button class="tab" onclick="show('lifeSkills')">🌟 Life</button>
+  <button class="tab" onclick="show('musicFun')">🎶 Music</button>
   <button class="tab" onclick="show('treasure')">🪙 Hunt</button>
   <button class="tab" onclick="show('memory')">🧠 Memory</button>
   <button class="tab" onclick="show('spellbuild')">🔠 Spelling</button>
@@ -296,6 +374,65 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
     <div class="options" id="gameOptions"></div>
     <div class="feedback" id="gameFb"></div>
   </div>
+</section>
+
+
+<section id="xoxo" class="section">
+  <h2>XOXO Game</h2>
+  <div class="hint">Classic Tic-Tac-Toe for kids. You are ❌. The computer is ⭕. Win or tie to earn rewards!</div>
+  <div class="row">
+    <button class="gold" onclick="resetXoxo()">🔄 New XOXO Game</button>
+    <button class="white" onclick="speak('XOXO rule. Get three in a row. Across, down, or diagonal.')">🔊 Rules</button>
+  </div>
+  <div class="xoxoBoard" id="xoxoBoard"></div>
+  <div class="feedback" id="xoxoFb"></div>
+</section>
+
+<section id="quests" class="section">
+  <h2>Daily Quest Map</h2>
+  <div class="hint">A professional app-style learning path. Complete quests to earn coins, stars, and badges.</div>
+  <div class="appRibbon" id="questRibbon">Today’s goal: complete 3 quests and one bedtime story.</div>
+  <div class="lessonPath" id="questMap"></div>
+</section>
+
+<section id="brain" class="section">
+  <h2>Brain Boosters</h2>
+  <div class="hint">Short thinking games: odd one out, sequence, memory, problem solving, and attention.</div>
+  <div class="row">
+    <button class="gold" onclick="brainOddOne()">🕵️ Odd One Out</button>
+    <button class="gold" onclick="brainSequence()">➡️ Sequence</button>
+    <button class="gold" onclick="brainOpposite()">↔️ Opposites</button>
+    <button class="gold" onclick="brainRiddle()">❓ Riddle</button>
+  </div>
+  <div class="quiz">
+    <div class="question" id="brainQ">Pick a brain booster.</div>
+    <div class="options" id="brainOptions"></div>
+    <div class="feedback" id="brainFb"></div>
+  </div>
+</section>
+
+<section id="lifeSkills" class="section">
+  <h2>Life Skills for Ages 5–7</h2>
+  <div class="hint">Fun practical skills: morning routine, backpack, bathroom, hygiene, emotions, and helping at home.</div>
+  <div class="grid" id="lifeGrid"></div>
+  <div class="quiz">
+    <div class="question" id="lifeQ">Tap a life skill or start a quiz.</div>
+    <div class="options" id="lifeOptions"></div>
+    <div class="feedback" id="lifeFb"></div>
+  </div>
+  <div class="row"><button class="gold" onclick="lifeQuiz()">🌟 Life Skill Quiz</button></div>
+</section>
+
+<section id="musicFun" class="section">
+  <h2>Music, Rhythm, and Movement</h2>
+  <div class="hint">Clap patterns, rhythm listening, dance breaks, and silly songs.</div>
+  <div class="grid" id="musicGrid"></div>
+  <div class="row">
+    <button class="gold" onclick="clapPattern()">👏 Clap Pattern</button>
+    <button class="pinkbtn" onclick="sillySong()">🎤 Silly Song</button>
+    <button class="greenbtn" onclick="movementBreak()">💃 Movement Break</button>
+  </div>
+  <div class="imaginationBox" id="musicBox">Tap a music activity.</div>
 </section>
 
 <section id="certificate" class="section">
@@ -681,10 +818,207 @@ function rewardSpinner(){
   speak("Reward spinner. You won " + r[0]);
 }
 
+
+/* Premium engagement additions */
+let xoxoBoard=["","","","","","","","",""], xoxoActive=true;
+
+function resetXoxo(){
+  xoxoBoard=["","","","","","","","",""];
+  xoxoActive=true;
+  renderXoxo();
+  document.getElementById("xoxoFb").textContent="Your turn. Tap a square for X.";
+  speak("New XOXO game. You are X. Tap a square.");
+}
+function renderXoxo(){
+  const board=document.getElementById("xoxoBoard");
+  if(!board) return;
+  board.innerHTML="";
+  xoxoBoard.forEach((v,i)=>{
+    const b=document.createElement("button");
+    b.className="xoxoCell";
+    b.textContent=v;
+    b.onclick=()=>xoxoMove(i);
+    board.appendChild(b);
+  });
+}
+function xoxoMove(i){
+  if(!xoxoActive || xoxoBoard[i]) return;
+  xoxoBoard[i]="❌";
+  if(checkXoxo("❌")){xoxoActive=false;renderXoxo();document.getElementById("xoxoFb").textContent="You win! 🎉";addScore(25,"XOXO winner! You earned twenty five points.");return;}
+  if(xoxoBoard.every(Boolean)){xoxoActive=false;renderXoxo();document.getElementById("xoxoFb").textContent="Tie game! Great thinking.";addScore(10,"Tie game. Great strategy.");return;}
+  let empty=xoxoBoard.map((v,idx)=>v?null:idx).filter(v=>v!==null);
+  let winMove=findXoxoMove("⭕");
+  let blockMove=findXoxoMove("❌");
+  let move=winMove!==null?winMove:(blockMove!==null?blockMove:(xoxoBoard[4]===""?4:empty[Math.floor(Math.random()*empty.length)]));
+  xoxoBoard[move]="⭕";
+  if(checkXoxo("⭕")){xoxoActive=false;renderXoxo();document.getElementById("xoxoFb").textContent="Computer won. Try again!";speak("Computer got three in a row. Try again!");return;}
+  if(xoxoBoard.every(Boolean)){xoxoActive=false;renderXoxo();document.getElementById("xoxoFb").textContent="Tie game! Great thinking.";addScore(10,"Tie game. Great strategy.");return;}
+  renderXoxo();
+  speak("Your turn.");
+}
+function findXoxoMove(mark){
+  for(let i=0;i<9;i++){
+    if(!xoxoBoard[i]){
+      xoxoBoard[i]=mark;
+      const win=checkXoxo(mark);
+      xoxoBoard[i]="";
+      if(win) return i;
+    }
+  }
+  return null;
+}
+function checkXoxo(mark){
+  const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  return wins.some(w=>w.every(i=>xoxoBoard[i]===mark));
+}
+
+const questData=[
+  ["Reading Rocket","📖","Complete one reading quiz.",()=>show("reading")],
+  ["Math Mountain","🔢","Complete one math question.",()=>show("math")],
+  ["Manners Meadow","🙏","Practice one manners card.",()=>show("manners")],
+  ["Dining Castle","🍽️","Practice one dining rule.",()=>show("dining")],
+  ["Creative Cloud","🚀","Do one imagination mission.",()=>show("imagine")],
+  ["Game Island","🎮","Play one arcade game.",()=>show("games")],
+  ["Story Moon","🌙","Read one bedtime story.",()=>show("stories")],
+  ["Pet Park","🐶","Feed or visit your pet.",()=>show("pet")]
+];
+function renderQuestMap(){
+  const map=document.getElementById("questMap");
+  if(!map) return;
+  map.innerHTML="";
+  questData.forEach((q,idx)=>{
+    const d=document.createElement("div");
+    d.className="lessonNode";
+    d.innerHTML=`<div class="emoji">${q[1]}</div><h3>${q[0]}</h3><p>${q[2]}</p><button class="gold">Go</button>`;
+    d.onclick=q[3];
+    map.appendChild(d);
+  });
+}
+
+const lifeSkills=[
+  ["Morning Routine","🌞","Wake up, bathroom, brush teeth, get dressed, eat breakfast, backpack ready."],
+  ["Backpack Check","🎒","Folder, water bottle, lunch, jacket, and one calm body."],
+  ["Bathroom Independence","🚽","Go, wipe, flush, wash hands, dry hands."],
+  ["Hygiene Hero","🧼","Wash hands, cover cough, use tissue, keep fingers out of nose."],
+  ["Problem Solving","🧠","Stop, breathe, think, ask for help, try again."],
+  ["Friendship","🤝","Ask to play, share, take turns, use kind words."],
+  ["Clean Room","🧺","Toys in bins, books on shelf, clothes in basket."],
+  ["Bedtime Routine","🌙","Pajamas, brush teeth, story, calm breaths, sleep."]
+];
+function initLifeSkills(){
+  const g=document.getElementById("lifeGrid");
+  if(!g || g.children.length) return;
+  lifeSkills.forEach(([n,e,t])=>g.appendChild(card(`<div class="emoji">${e}</div><div>${n}</div><div class="word">${t}</div>`,`${n}. ${t}`)));
+}
+function lifeQuiz(){
+  const qs=[
+    ["After using the bathroom, what do you do?","Wash hands",["Wash hands","Run away","Touch toys","Skip flushing"]],
+    ["If a task is hard, what can you do?","Try again",["Try again","Throw it","Give up forever","Yell"]],
+    ["What goes in your backpack?","Folder and water bottle",["Folder and water bottle","Dirty socks","Open paint","Ice cream"]],
+    ["What helps at bedtime?","Calm routine",["Calm routine","Jumping on bed","Loud shouting","More candy"]]
+  ];
+  const q=qs[Math.floor(Math.random()*qs.length)];
+  document.getElementById("lifeQ").textContent=q[0];
+  document.getElementById("lifeFb").textContent="";
+  speak(q[0]);
+  options("lifeOptions",q[2].map(x=>({label:x,value:x})),q[1],()=>{
+    document.getElementById("lifeFb").textContent="🌟 Life skill star!";
+    addScore(15,"Great life skill answer. Fifteen points!","manners");
+  },()=>{
+    document.getElementById("lifeFb").textContent="Try again 😊";
+    speak("Try again. Choose the helpful answer.");
+  });
+}
+
+const musicActivities=[
+  ["Fast and Slow","🐇🐢","Fast sounds move quickly. Slow sounds move gently."],
+  ["High and Low","⬆️⬇️","High sounds are squeaky. Low sounds are deep."],
+  ["Clap Beat","👏","Clap a steady beat: clap, clap, clap, clap."],
+  ["Freeze Dance","🧊","Dance, dance, dance, freeze!"],
+  ["Loud and Soft","📣🤫","Loud is big sound. Soft is gentle sound."],
+  ["Rhythm Echo","🎵","Listen and copy the pattern."]
+];
+function initMusicFun(){
+  const g=document.getElementById("musicGrid");
+  if(!g || g.children.length) return;
+  musicActivities.forEach(([n,e,t])=>g.appendChild(card(`<div class="emoji">${e}</div><div>${n}</div><div class="word">${t}</div>`,`${n}. ${t}`)));
+}
+function clapPattern(){
+  const patterns=["clap, clap, pause, clap","clap, stomp, clap, stomp","tap, tap, clap","clap, clap, clap, freeze"];
+  const p=patterns[Math.floor(Math.random()*patterns.length)];
+  document.getElementById("musicBox").textContent="Copy this pattern: " + p;
+  speak("Copy this pattern. " + p);
+}
+function sillySong(){
+  const songs=[
+    "I brush my teeth, shiny and bright, sparkle sparkle every night!",
+    "Please and thank you, here we go, kind words help our friendships grow!",
+    "Count the stars, one two three, learning is fun for you and me!",
+    "Wiggle left and wiggle right, now freeze still like a statue tonight!"
+  ];
+  const s=songs[Math.floor(Math.random()*songs.length)];
+  document.getElementById("musicBox").textContent=s;
+  speak("Silly song. " + s);
+  star("Singing star!","imagine");
+}
+
+function brainOddOne(){
+  const qs=[
+    ["Which one is not an animal?","Car",["Dog","Cat","Car","Lion"]],
+    ["Which one is not food?","Chair",["Apple","Pizza","Chair","Banana"]],
+    ["Which one is not a color?","Table",["Red","Blue","Table","Green"]],
+    ["Which one is not a shape?","Tiger",["Circle","Square","Tiger","Triangle"]]
+  ];
+  brainAsk(qs[Math.floor(Math.random()*qs.length)]);
+}
+function brainSequence(){
+  const qs=[
+    ["What comes next? 1, 2, 3, __","4",["4","7","1","9"]],
+    ["What comes next? A, B, C, __","D",["D","Z","B","M"]],
+    ["What comes next? 🔴 🔵 🔴 🔵 __","🔴",["🔴","🟢","🟡","⚫"]],
+    ["What comes next? small, medium, __","large",["large","tiny","red","circle"]]
+  ];
+  brainAsk(qs[Math.floor(Math.random()*qs.length)]);
+}
+function brainOpposite(){
+  const qs=[
+    ["Opposite of hot?","cold",["cold","warm","sun","fire"]],
+    ["Opposite of up?","down",["down","sky","jump","high"]],
+    ["Opposite of big?","small",["small","huge","giant","wide"]],
+    ["Opposite of fast?","slow",["slow","quick","run","race"]]
+  ];
+  brainAsk(qs[Math.floor(Math.random()*qs.length)]);
+}
+function brainRiddle(){
+  const qs=[
+    ["I shine in the sky during the day. What am I?","Sun",["Sun","Shoe","Book","Fish"]],
+    ["I have pages and you read me. What am I?","Book",["Book","Ball","Cup","Tree"]],
+    ["I go woof. What am I?","Dog",["Dog","Cat","Bird","Fish"]],
+    ["I help you write. What am I?","Pencil",["Pencil","Banana","Moon","Fork"]]
+  ];
+  brainAsk(qs[Math.floor(Math.random()*qs.length)]);
+}
+function brainAsk(q){
+  document.getElementById("brainQ").textContent=q[0];
+  document.getElementById("brainFb").textContent="";
+  speak(q[0]);
+  options("brainOptions",q[2].map(x=>({label:x,value:x})),q[1],()=>{
+    document.getElementById("brainFb").textContent="🧠 Brain boost!";
+    addScore(15,"Brain booster correct. Fifteen points!");
+  },()=>{
+    document.getElementById("brainFb").textContent="Try again 😊";
+    speak("Try again. Think carefully.");
+  });
+}
+
 function initAll(){
   initStore();initLetters();initWords();initReading();initMath();initPatterns();initManners();initEtiquette();initDining();initJokes();initImagine();fill("scienceGrid",science);fill("safetyGrid",safety);fill("geoGrid",geo);fill("spaceGrid",space);fill("dinoGrid",dino);fill("codingGrid",coding);codingQuiz();initStories();initPaint();
   traceCtx=setupCanvas(document.getElementById("canvas"),()=>"#d6336c");paintCtx=setupCanvas(document.getElementById("paintCanvas"),()=>paintColor);
   renderStats();
+  renderXoxo();
+  renderQuestMap();
+  initLifeSkills();
+  initMusicFun();
   if(document.getElementById("memoryGrid")) newMemoryGame();
 }
 initAll();

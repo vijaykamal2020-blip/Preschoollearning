@@ -154,6 +154,12 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   <button class="tab" onclick="show('stories')">🌙 Stories</button>
   <button class="tab" onclick="show('certificate')">🥇 Certificate</button>
   <button class="tab" onclick="show('quizzone')">🏆 Quiz</button>
+  <button class="tab" onclick="show('games')">🎮 Games</button>
+  <button class="tab" onclick="show('treasure')">🪙 Hunt</button>
+  <button class="tab" onclick="show('memory')">🧠 Memory</button>
+  <button class="tab" onclick="show('spellbuild')">🔠 Spelling</button>
+  <button class="tab" onclick="show('roleplay')">🎭 Roleplay</button>
+  <button class="tab" onclick="show('sillystory')">🤪 Story Maker</button>
 </div>
 
 <section id="dashboard" class="section">
@@ -220,6 +226,78 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
   </div>
 </section>
 
+
+<section id="treasure" class="section">
+  <h2>Treasure Hunt Missions</h2>
+  <div class="hint">Real-world learning game. Tap a mission, find the item around the house, then tap “I Found It.”</div>
+  <div class="row">
+    <button class="gold" onclick="newTreasure()">🪙 New Hunt</button>
+    <button class="greenbtn" onclick="completeTreasure()">✅ I Found It</button>
+  </div>
+  <div class="imaginationBox" id="treasureBox">Tap “New Hunt.”</div>
+</section>
+
+<section id="memory" class="section">
+  <h2>Memory Match Game</h2>
+  <div class="hint">Find matching pairs. This builds focus, visual memory, and attention.</div>
+  <div class="row"><button class="gold" onclick="newMemoryGame()">🔄 New Game</button></div>
+  <div class="grid" id="memoryGrid"></div>
+  <div class="feedback" id="memoryFb"></div>
+</section>
+
+<section id="spellbuild" class="section">
+  <h2>Spelling Builder</h2>
+  <div class="hint">Listen to the word, then tap the correct spelling.</div>
+  <div class="quiz">
+    <div class="question" id="spellQ">Tap Start Spelling.</div>
+    <div class="options" id="spellOptions"></div>
+    <div class="feedback" id="spellFb"></div>
+  </div>
+  <div class="row"><button class="gold" onclick="newSpellQuiz()">🔠 Start Spelling</button></div>
+</section>
+
+<section id="roleplay" class="section">
+  <h2>Emotion and Manners Roleplay</h2>
+  <div class="hint">Practice what to say in real situations: school, playdates, dining, and big feelings.</div>
+  <div class="row">
+    <button class="gold" onclick="newRoleplay()">🎭 New Roleplay</button>
+    <button class="greenbtn" onclick="completeRoleplay()">⭐ I Practiced</button>
+  </div>
+  <div class="imaginationBox" id="roleplayBox">Tap “New Roleplay.”</div>
+</section>
+
+<section id="sillystory" class="section">
+  <h2>Silly Story Maker</h2>
+  <div class="hint">Tap the button and the app creates a silly story starter. Great for imagination and speaking.</div>
+  <div class="row">
+    <button class="gold" onclick="makeSillyStory()">🤪 Make Story</button>
+    <button class="white" onclick="readSillyStory()">🔊 Read It</button>
+    <button class="greenbtn" onclick="star('Amazing silly storytelling! You earned creativity coins!', 'imagine')">⭐ I Told It</button>
+  </div>
+  <div class="imaginationBox" id="sillyStoryBox">Tap “Make Story.”</div>
+</section>
+
+
+<section id="games" class="section">
+  <h2>Games Arcade</h2>
+  <div class="hint">Fun learning games for ages 5–7. Correct answers give coins, stars, and points.</div>
+  <div class="row">
+    <button class="gold" onclick="startGame('letter')">🔤 Letter Pop</button>
+    <button class="gold" onclick="startGame('number')">🔢 Count Stars</button>
+    <button class="gold" onclick="startGame('shape')">🔺 Shape Pop</button>
+    <button class="gold" onclick="startGame('word')">👀 Sight Word Race</button>
+    <button class="gold" onclick="startGame('mathballoon')">🎈 Math Balloons</button>
+    <button class="gold" onclick="startGame('rhyme')">🎵 Rhyming</button>
+    <button class="gold" onclick="startGame('kindness')">💛 Kindness Choice</button>
+    <button class="greenbtn" onclick="rewardSpinner()">🎡 Reward Spinner</button>
+  </div>
+  <div class="quiz">
+    <div class="question" id="gameQ">Pick a game to start.</div>
+    <div class="options" id="gameOptions"></div>
+    <div class="feedback" id="gameFb"></div>
+  </div>
+</section>
+
 <section id="certificate" class="section">
   <h2>Certificate and Badges</h2>
   <div class="hint">Celebrate progress. You can screenshot or print this page.</div>
@@ -239,7 +317,7 @@ canvas{width:100%;height:330px;background:#fff;border:5px solid #ffd43b;border-r
 <script>
 let state=JSON.parse(localStorage.getItem("superAppState")||"{}");
 state={stars:0,coins:0,score:0,correct:0,reading:0,math:0,manners:0,imagine:0,stories:0,pet:"🐶",petName:"Buddy",petLevel:1,music:false,lastDate:"",streak:1,...state};
-let lastSpeech="",traceIndex=0,currentStory=null,currentImagine="",voices=[],selectedVoice=null,megaMode="mixed",paintColor="#d6336c",musicOsc=null,musicCtx=null;
+let lastSpeech="",traceIndex=0,currentStory=null,currentImagine="",voices=[],selectedVoice=null,megaMode="mixed",paintColor="#d6336c",musicCtx=null,musicTimer=null,musicGain=null,musicOn=false,currentMemory=[];
 const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const letterData={A:["Apple","ah","🍎"],B:["Ball","buh","⚽"],C:["Cat","kuh","🐱"],D:["Dog","duh","🐶"],E:["Elephant","eh","🐘"],F:["Fish","fff","🐟"],G:["Goat","guh","🐐"],H:["Hat","huh","🎩"],I:["Igloo","ih","🧊"],J:["Juice","juh","🧃"],K:["Kite","kuh","🪁"],L:["Lion","lll","🦁"],M:["Moon","mmm","🌙"],N:["Nest","nnn","🪺"],O:["Octopus","oh","🐙"],P:["Pizza","puh","🍕"],Q:["Queen","kwuh","👑"],R:["Rainbow","rrr","🌈"],S:["Sun","sss","☀️"],T:["Tiger","tuh","🐯"],U:["Umbrella","uh","☂️"],V:["Van","vvv","🚐"],W:["Water","wuh","💧"],X:["Fox has x sound","ks","🦊"],Y:["Yo-yo","yuh","🪀"],Z:["Zebra","zzz","🦓"]};
 const sight=["I","a","the","to","and","is","it","in","you","we","my","me","he","she","see","like","can","go","up","down","look","at","on","red","blue","yellow","big","little","play","come","said","for","have","here","was","with","they","this","are","not","but","all","one","two","three"];
@@ -292,7 +370,43 @@ function fill(id,arr){let g=document.getElementById(id);arr.forEach(([n,e,t])=>g
 function initStore(){const pets=["🐶","🐱","🐰","🦊","🐼","🦁","🦄","🐢"];let g=document.getElementById("storeGrid");g.innerHTML="";pets.forEach(p=>{let d=card(`<div class="emoji">${p}</div><div>Choose Pet</div><div class="word">10 coins</div>`,`This pet is ${p}. Use ten coins to choose it.`);d.classList.add("storeItem");if(state.pet===p)d.classList.add("selected");d.onclick=()=>{if(state.coins>=10||state.pet===p){if(state.pet!==p)state.coins-=10;state.pet=p;save();renderStats();initStore();speak("Pet selected!")}else speak("You need ten coins for this pet. Try a quiz to earn coins.")};g.appendChild(d)})}
 function renderPet(){let pe=document.getElementById("petEmoji");if(!pe)return;pe.textContent=state.pet;document.getElementById("petName").textContent=state.petName;document.getElementById("petMsg").textContent=`Level ${state.petLevel}. I grow when you learn!`}
 function feedPet(){if(state.coins>=5){state.coins-=5;state.petLevel++;save();renderStats();confetti();speak("Yum! Your pet is happy and growing!")}else speak("You need five coins to feed your pet. Try a quiz first.")}
-function toggleMusic(){if(musicOsc){musicOsc.stop();musicOsc=null;speak("Music off.");return}musicCtx=new (window.AudioContext||window.webkitAudioContext)();musicOsc=musicCtx.createOscillator();let gain=musicCtx.createGain();musicOsc.type="sine";musicOsc.frequency.value=392;gain.gain.value=.025;musicOsc.connect(gain);gain.connect(musicCtx.destination);musicOsc.start();speak("Soft background music on. Tap music again to stop.")}
+function playTone(freq, duration=0.18, when=0){
+  if(!musicCtx) return;
+  const osc = musicCtx.createOscillator();
+  const gain = musicCtx.createGain();
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(freq, musicCtx.currentTime + when);
+  gain.gain.setValueAtTime(0.0001, musicCtx.currentTime + when);
+  gain.gain.exponentialRampToValueAtTime(0.035, musicCtx.currentTime + when + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.0001, musicCtx.currentTime + when + duration);
+  osc.connect(gain);
+  gain.connect(musicCtx.destination);
+  osc.start(musicCtx.currentTime + when);
+  osc.stop(musicCtx.currentTime + when + duration + 0.03);
+}
+function playMelody(){
+  if(!musicOn) return;
+  const notes=[392,440,494,523,494,440,392,330,392,440,523,587,523,440];
+  notes.forEach((n,i)=>playTone(n,0.20,i*0.24));
+}
+async function toggleMusic(){
+  try{
+    if(musicOn){
+      musicOn=false;
+      if(musicTimer){clearInterval(musicTimer);musicTimer=null;}
+      speak("Music off.");
+      return;
+    }
+    musicCtx = musicCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if(musicCtx.state === "suspended") await musicCtx.resume();
+    musicOn=true;
+    playMelody();
+    musicTimer=setInterval(playMelody, 3800);
+    speak("Music on. Soft learning melody is playing. Tap music again to stop.");
+  }catch(e){
+    alert("Music could not start in this browser. Try tapping the page once, then tap Music again.");
+  }
+}
 
 function initLetters(){let g=document.getElementById("letterGrid");letters.forEach(l=>{let [w,s,e]=letterData[l];g.appendChild(card(`<div class="big">${l} ${l.toLowerCase()}</div><div class="emoji">${e}</div><div class="word">${w}</div>`,`This is letter ${l}. Uppercase ${l}. Lowercase ${l.toLowerCase()}. ${l} says ${s}. ${l} is for ${w}.`))});phonicsQuiz()}
 function phonicsQuiz(){let l=letters[Math.floor(Math.random()*letters.length)],d=letterData[l];document.getElementById("phonicsQ").textContent=`Which one starts with ${l}?`;document.getElementById("phonicsFb").textContent="";speak(`Which word starts with letter ${l}?`);let opts=[{label:d[2]+" "+d[0],value:d[0]}];while(opts.length<4){let x=letters[Math.floor(Math.random()*letters.length)],dd=letterData[x];if(x!==l&&!opts.some(o=>o.value===dd[0]))opts.push({label:dd[2]+" "+dd[0],value:dd[0]})}options("phonicsOptions",opts,d[0],()=>{document.getElementById("phonicsFb").textContent="🎉 Correct!";addScore(10,`Correct. ${d[0]} starts with ${l}. Ten points!`,"reading");setTimeout(phonicsQuiz,900)},()=>{document.getElementById("phonicsFb").textContent="Try again 😊";speak(`Try again. Listen for ${l}.`)})}
@@ -340,10 +454,238 @@ function clearPaint(){paintCtx.clearRect(0,0,paintCanvas.width,paintCanvas.heigh
 function finishColoring(){star("Beautiful artwork! You earned an artist star!","imagine")}
 function renderCertificate(){let level=Math.floor(state.score/100)+1;document.getElementById("certBox").innerHTML=`<div class="story-title">🥇 Certificate of Learning</div><p>This certifies that this super kindergartener reached <b>Level ${level}</b>, earned <b>${state.stars} stars</b>, <b>${state.coins} coins</b>, and answered <b>${state.correct}</b> questions correctly.</p><p>Badges: <b>${document.getElementById("badges")?.textContent||"Keep practicing!"}</b></p><p>Signed: Your Learning Buddy 👧</p>`}
 function initShapesDisplay(){let sec=document.createElement("section")}
+
+const treasureMissions=[
+  "Find something red. Bring it close and say, I found red!",
+  "Find something shaped like a circle.",
+  "Find three things that start with the letter B.",
+  "Find something soft and something hard.",
+  "Find a book and point to the title.",
+  "Find five toys and count them out loud.",
+  "Find something you use at the dining table.",
+  "Find something that helps you stay safe.",
+  "Find something tiny and something big.",
+  "Find something that makes you happy."
+];
+let currentTreasure="";
+function newTreasure(){
+  currentTreasure=treasureMissions[Math.floor(Math.random()*treasureMissions.length)];
+  document.getElementById("treasureBox").textContent=currentTreasure;
+  speak("Treasure hunt mission. " + currentTreasure);
+}
+function completeTreasure(){
+  if(!currentTreasure){speak("Tap new hunt first.");return;}
+  addScore(15,"Treasure found! You earned fifteen points and coins.","imagine");
+}
+
+function newMemoryGame(){
+  const items=["🍎","🐶","🌙","⭐","🚗","🦁","🙏","🥦"];
+  currentMemory=[...items.slice(0,6),...items.slice(0,6)].sort(()=>Math.random()-.5);
+  const grid=document.getElementById("memoryGrid");
+  grid.innerHTML="";
+  document.getElementById("memoryFb").textContent="Find matching pairs!";
+  let first=null, lock=false, matched=0;
+  currentMemory.forEach((v,i)=>{
+    const b=document.createElement("button");
+    b.className="card";
+    b.style.minHeight="82px";
+    b.innerHTML='<div class="emoji">❓</div>';
+    b.dataset.value=v;
+    b.dataset.open="0";
+    b.onclick=()=>{
+      if(lock || b.dataset.open==="1") return;
+      b.dataset.open="1";
+      b.innerHTML='<div class="emoji">'+v+'</div>';
+      speak("You found " + v);
+      if(!first){first=b;return;}
+      if(first.dataset.value===b.dataset.value){
+        matched++;
+        first=null;
+        document.getElementById("memoryFb").textContent="Match! 🎉";
+        addScore(5,"Memory match! Five points.");
+        if(matched===6){
+          document.getElementById("memoryFb").textContent="You matched all pairs! 🏆";
+          addScore(20,"Amazing memory! You won the game.");
+        }
+      }else{
+        lock=true;
+        setTimeout(()=>{
+          first.dataset.open="0"; b.dataset.open="0";
+          first.innerHTML='<div class="emoji">❓</div>'; b.innerHTML='<div class="emoji">❓</div>';
+          first=null; lock=false;
+        },800);
+      }
+    };
+    grid.appendChild(b);
+  });
+  speak("Memory game started. Find matching pairs.");
+}
+
+function newSpellQuiz(){
+  const words=["cat","dog","sun","hat","pig","bug","map","star","tree","frog"];
+  const ans=words[Math.floor(Math.random()*words.length)];
+  const wrong=[ans.split("").reverse().join(""), ans.slice(0,-1)+"e", ans[0]+ans].filter(x=>x!==ans);
+  const opts=[ans,...wrong].slice(0,4);
+  document.getElementById("spellQ").textContent="Which spelling is correct for: " + ans;
+  document.getElementById("spellFb").textContent="";
+  speak("Which spelling is correct? " + ans);
+  options("spellOptions",opts.map(x=>({label:x,value:x})),ans,()=>{
+    document.getElementById("spellFb").textContent="🎉 Correct spelling!";
+    addScore(15,"Correct spelling. Fifteen points!","reading");
+    setTimeout(newSpellQuiz,1000);
+  },()=>{
+    document.getElementById("spellFb").textContent="Try again 😊";
+    speak("Try again. Look carefully at the letters.");
+  });
+}
+
+const roleplays=[
+  "A friend takes your toy. Practice saying: Can I have a turn when you are done?",
+  "You spill water at the table. Practice saying: I am sorry. I will help clean it.",
+  "You want more food. Practice saying: May I have more please?",
+  "You feel angry because you lost a game. Practice saying: I feel upset. I need a breath.",
+  "You meet a new friend. Practice saying: Hi, my name is. What is your name?",
+  "Teacher is talking and you have a question. Practice raising your hand and waiting.",
+  "Someone gives you a gift. Practice saying: Thank you. That was kind.",
+  "You need to pass by someone. Practice saying: Excuse me, please."
+];
+let currentRoleplay="";
+function newRoleplay(){
+  currentRoleplay=roleplays[Math.floor(Math.random()*roleplays.length)];
+  document.getElementById("roleplayBox").textContent=currentRoleplay;
+  speak("Roleplay time. " + currentRoleplay);
+}
+function completeRoleplay(){
+  if(!currentRoleplay){speak("Tap new roleplay first.");return;}
+  addScore(15,"Wonderful roleplay. You practiced real life words.","manners");
+}
+
+let currentSillyStory="";
+function makeSillyStory(){
+  const heroes=["a dancing dinosaur","a tiny astronaut","a polite dragon","a superhero puppy","a rainbow robot","a giggling cloud"];
+  const places=["on the moon","inside a lunchbox","at a magic school","under a pancake bridge","in a jungle library","on a flying bed"];
+  const problems=["lost its favorite sock","needed to learn table manners","forgot how to say please","had to count ten stars","needed to fix a silly machine","wanted to make a new friend"];
+  const endings=["with kindness","by trying again","with a funny joke","by sharing","with three calm breaths","by using imagination"];
+  currentSillyStory=`Once upon a time, ${heroes[Math.floor(Math.random()*heroes.length)]} went ${places[Math.floor(Math.random()*places.length)]}. It ${problems[Math.floor(Math.random()*problems.length)]}. In the end, it solved the problem ${endings[Math.floor(Math.random()*endings.length)]}. Now you tell what happens next!`;
+  document.getElementById("sillyStoryBox").textContent=currentSillyStory;
+  speak(currentSillyStory);
+}
+function readSillyStory(){
+  speak(currentSillyStory || "Tap make story first.");
+}
+
+
+let currentGame="letter";
+function startGame(game){
+  currentGame=game;
+  document.getElementById("gameFb").textContent="";
+  if(game==="letter") gameLetterPop();
+  if(game==="number") gameCountStars();
+  if(game==="shape") gameShapePop();
+  if(game==="word") gameSightWordRace();
+  if(game==="mathballoon") gameMathBalloons();
+  if(game==="rhyme") gameRhyming();
+  if(game==="kindness") gameKindness();
+}
+function gameWin(message,nextFn){
+  document.getElementById("gameFb").textContent="🎉 Correct!";
+  addScore(15,message || "Game win! Fifteen points!");
+  setTimeout(nextFn,1000);
+}
+function gameTry(){
+  document.getElementById("gameFb").textContent="Try again 😊";
+  speak("Try again. You can do it!");
+}
+function gameLetterPop(){
+  const l=letters[Math.floor(Math.random()*letters.length)];
+  document.getElementById("gameQ").textContent="Letter Pop: Tap " + l;
+  speak("Letter pop. Tap letter " + l);
+  let opts=[l];
+  while(opts.length<6){let x=letters[Math.floor(Math.random()*letters.length)];if(!opts.includes(x))opts.push(x)}
+  options("gameOptions",opts.map(x=>({label:x,value:x})),l,()=>gameWin("Pop! You found letter "+l+".",gameLetterPop),gameTry);
+}
+function gameCountStars(){
+  const n=Math.floor(Math.random()*8)+2;
+  document.getElementById("gameQ").innerHTML="Count Stars: How many? " + "⭐".repeat(n);
+  speak("Count the stars. How many stars?");
+  let opts=[n];
+  while(opts.length<4){let x=Math.floor(Math.random()*10)+1;if(!opts.includes(x))opts.push(x)}
+  options("gameOptions",opts.map(x=>({label:x,value:x})),n,()=>gameWin("Correct. There are "+n+" stars.",gameCountStars),gameTry);
+}
+function gameShapePop(){
+  const shapeNames=["Circle","Square","Triangle","Rectangle","Oval","Diamond"];
+  const ans=shapeNames[Math.floor(Math.random()*shapeNames.length)];
+  document.getElementById("gameQ").textContent="Shape Pop: Tap the " + ans;
+  speak("Shape pop. Tap the " + ans);
+  let opts=[ans];
+  while(opts.length<4){let x=shapeNames[Math.floor(Math.random()*shapeNames.length)];if(!opts.includes(x))opts.push(x)}
+  options("gameOptions",opts.map(x=>({label:x,value:x})),ans,()=>gameWin("Correct. That is a "+ans+".",gameShapePop),gameTry);
+}
+function gameSightWordRace(){
+  const ans=sight[Math.floor(Math.random()*sight.length)];
+  document.getElementById("gameQ").textContent="Sight Word Race: Tap " + ans;
+  speak("Sight word race. Tap the word " + ans);
+  let opts=[ans];
+  while(opts.length<5){let x=sight[Math.floor(Math.random()*sight.length)];if(!opts.includes(x))opts.push(x)}
+  options("gameOptions",opts.map(x=>({label:x,value:x})),ans,()=>gameWin("Zoom! You found the word "+ans+".",gameSightWordRace),gameTry);
+}
+function gameMathBalloons(){
+  const a=Math.floor(Math.random()*6)+1;
+  const b=Math.floor(Math.random()*5)+1;
+  const ans=a+b;
+  document.getElementById("gameQ").innerHTML="Math Balloons: " + "🎈".repeat(a) + " + " + "🎈".repeat(b) + " = ?";
+  speak("Math balloons. What is " + a + " plus " + b + "?");
+  let opts=[ans];
+  while(opts.length<4){let x=Math.floor(Math.random()*12)+1;if(!opts.includes(x))opts.push(x)}
+  options("gameOptions",opts.map(x=>({label:x,value:x})),ans,()=>gameWin("Balloon math! The answer is "+ans+".",gameMathBalloons),gameTry);
+}
+function gameRhyming(){
+  const pairs=[["cat","hat"],["dog","frog"],["sun","fun"],["bug","hug"],["star","car"],["cake","snake"],["bee","tree"],["boat","goat"]];
+  const p=pairs[Math.floor(Math.random()*pairs.length)];
+  const ans=p[1];
+  document.getElementById("gameQ").textContent="Rhyming Game: What rhymes with " + p[0] + "?";
+  speak("What rhymes with " + p[0] + "?");
+  let wrong=["book","fish","moon","chair","shoe","ball"].filter(x=>x!==ans);
+  let opts=[ans,...wrong.sort(()=>Math.random()-.5).slice(0,3)];
+  options("gameOptions",opts.map(x=>({label:x,value:x})),ans,()=>gameWin("Yes. "+p[0]+" and "+ans+" rhyme.",gameRhyming),gameTry);
+}
+function gameKindness(){
+  const qs=[
+    ["A friend falls down. What do you do?","Ask, are you okay?",["Ask, are you okay?","Laugh","Run away","Take their toy"]],
+    ["You want a toy someone has. What do you say?","Can I have a turn please?",["Can I have a turn please?","Give it now","Grab it","Hide it"]],
+    ["You make a mess. What do you do?","Help clean up",["Help clean up","Walk away","Blame someone","Cry loudly"]],
+    ["Someone gives you snack. What do you say?","Thank you",["Thank you","More now","I do not care","Nothing"]]
+  ];
+  const q=qs[Math.floor(Math.random()*qs.length)];
+  document.getElementById("gameQ").textContent="Kindness Choice: " + q[0];
+  speak(q[0]);
+  options("gameOptions",q[2].map(x=>({label:x,value:x})),q[1],()=>gameWin("Kind choice! "+q[1]+".",gameKindness),gameTry);
+}
+function rewardSpinner(){
+  const rewards=[
+    ["⭐ 1 star",()=>{state.stars+=1;}],
+    ["🪙 5 coins",()=>{state.coins+=5;}],
+    ["🏆 10 points",()=>{state.score+=10;}],
+    ["🐶 Pet treat",()=>{state.petLevel+=1;}],
+    ["🎨 Artist badge practice",()=>{state.imagine+=1;}],
+    ["📖 Reading boost",()=>{state.reading+=1;}]
+  ];
+  const r=rewards[Math.floor(Math.random()*rewards.length)];
+  r[1]();
+  save();
+  renderStats();
+  confetti();
+  document.getElementById("gameQ").textContent="Reward Spinner!";
+  document.getElementById("gameOptions").innerHTML="";
+  document.getElementById("gameFb").textContent="You won: " + r[0];
+  speak("Reward spinner. You won " + r[0]);
+}
+
 function initAll(){
   initStore();initLetters();initWords();initReading();initMath();initPatterns();initManners();initEtiquette();initDining();initJokes();initImagine();fill("scienceGrid",science);fill("safetyGrid",safety);fill("geoGrid",geo);fill("spaceGrid",space);fill("dinoGrid",dino);fill("codingGrid",coding);codingQuiz();initStories();initPaint();
   traceCtx=setupCanvas(document.getElementById("canvas"),()=>"#d6336c");paintCtx=setupCanvas(document.getElementById("paintCanvas"),()=>paintColor);
   renderStats();
+  if(document.getElementById("memoryGrid")) newMemoryGame();
 }
 initAll();
 </script>
